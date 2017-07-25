@@ -29,6 +29,7 @@ def fill(request):
 
 	
 	if a:
+		#写入数据库
 		Person.objects.create(tier=a,houseinfo=b,housecf=c,rentfl=d,housecf5=e)
 		returndata = Person.objects.all()[len(Person.objects.all())-1]
 		with open("D:\codes\\allfile\chrome_fill_login\\readscript.js","w+") as f:

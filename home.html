@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>home</title>
+    <style type="text/css">
+/*#div{
+    margin: 100px;
+}*/
+#button2{
+    float: right;
+}
+    </style>
+    <script>
+    var iii = 1;
+
+
+    function delnum() {
+        iii--;
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("text1").innerText = JSON.parse(xmlhttp.responseText).tier;
+                document.getElementById("price").innerText = JSON.parse(xmlhttp.responseText).price;
+                
+            }
+            else{
+                document.getElementById("text1").innerText = "id找不到！id找不到";
+                document.getElementById("price").innerText = "同上同上同上同上";
+            }
+        }
+        xmlhttp.open("GET", "http://localhost:8000/writedata/" + iii.toString() + "/", true);
+        document.getElementById("num").innerText = iii;
+        xmlhttp.send();
+
+
+    }
+
+
+    function addnum() {
+        iii++;
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                console.log(xmlhttp.responseText);
+                document.getElementById("text1").innerText = JSON.parse(xmlhttp.responseText).tier;
+                document.getElementById("price").innerText = JSON.parse(xmlhttp.responseText).price;
+                
+            }
+            else{
+                document.getElementById("text1").innerText = "id找不到！id找不到";
+                document.getElementById("price").innerText = "同上同上同上同上";
+            }
+        }
+        console.log(iii.toString());
+        xmlhttp.open("GET", "http://127.0.0.1:8000/writedata/" + iii.toString() + "/", true);
+        document.getElementById("num").innerText = iii;
+        xmlhttp.send();
+
+    };
+
+     function empty() {
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                console.log(xmlhttp.responseText);
+            }
+            
+        }
+        console.log(iii.toString());
+        xmlhttp.open("GET", "http://127.0.0.1:8000/fill/?h=1", true);
+        xmlhttp.send();
+
+    };
+    </script>
+</head>
+<div id = "div">
+<button id="button" onclick="addnum()">+++</button>
+<button id="button1" onclick="delnum()">---</button>
+<button id="button2" onclick="empty()">清空</button><br>
+<b id = "num"></b><br>
+<b id="text1">首页</b>
+<b id="price">没有</b>
+</div>
+
+<body>
+</body>
+
+</html>
