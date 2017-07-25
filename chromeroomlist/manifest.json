@@ -1,0 +1,16 @@
+{
+  "name": "房间列表排序与监听关闭",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "房间列表排序与监听关闭",
+  "browser_action": {
+    "default_icon": "1.png"
+  },
+"content_scripts": [
+    {
+      "matches": ["http://www.hizhu.com/nanjing/roomlist.html*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
+

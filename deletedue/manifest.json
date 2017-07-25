@@ -1,0 +1,18 @@
+{
+  "name": "删除二十套失效房源",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "删除二十套失效房源",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://nj.zsb.house365.com/rent/manage/invalid/"],
+      "js": ["readscript.js"]
+    }
+  ]
+
+}

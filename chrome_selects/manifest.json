@@ -1,0 +1,18 @@
+{
+  "name": "删除最前日期十套房源",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "删除最前日期十套房源",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://nj.zsb.house365.com/rent/manage/active/"],
+      "js": ["readscript.js"]
+    }
+  ]
+
+}

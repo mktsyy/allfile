@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <script>
+    var iii = 1;
+
+
+    function delnum() {
+        iii--;
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("text1").innerText = "{{tier}}";
+                document.getElementById("num").innerText = iii;
+            }
+        }
+        xmlhttp.open("GET", "http://localhost:8000/writedata/" + iii.toString() + "/", true);
+
+        xmlhttp.send();
+
+
+    }
+
+
+    function addnum() {
+        iii++;
+        var xmlhttp;
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                console.log(xmlhttp.responseText);
+                document.getElementById("text1").innerText = "{{tier}}";
+                document.getElementById("num").innerText = iii;
+            }
+        }
+        console.log(iii.toString());
+        xmlhttp.open("GET", "http://localhost:8000/writedata/" + iii.toString() + "/", true);
+
+        xmlhttp.send();
+
+    };
+    </script>
+</head>
+<button id="button" onclick="addnum()">+++</button>
+<button id="button1" onclick="delnum()">---</button><br>
+<b id = "num"></b><br>
+<b id="text1">首页</b>
+
+
+<body>
+</body>
+
+</html>
