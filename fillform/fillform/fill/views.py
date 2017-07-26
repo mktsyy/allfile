@@ -57,7 +57,7 @@ def fill(request):
 			kkkk = '''document.getElementsByName("fitment")[0].value="精装"
 document.getElementsByName("forward")[0].value="南北通透"
 document.getElementsByName("payment")[0].value="月付"
-document.getElementsByName("rentroom")[0].value="次卧"
+
 document.getElementById("jsAllcheckbox").checked=true
 
 for (var i = 10 - 1; i >= 0; i--) {
@@ -66,8 +66,24 @@ for (var i = 10 - 1; i >= 0; i--) {
 '''
 
 			f.write(kkkk)
+
+			#主次卧调换
+			if int(returndata.rentfl)%100 == 0:
+				f.write('document.getElementsByName("rentroom")[0].value="次卧"\n')
+			else:
+				f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
+
+			#标题调换
 			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
-			f.write('document.getElementById("address").value="%s"\n' % title)
+			if int(returndata.rentfl)%100 == 0:
+				f.write('document.getElementById("address").value="%s"\n' % title)
+			elif int(returndata.rentfl)%50 == 0:
+				title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+				f.write('document.getElementById("address").value="%s"\n' % title)
+			else:
+				title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+				f.write('document.getElementById("address").value="%s"\n' % title)
+
 			
 			selectpic = '''
 setTimeout(function(){
@@ -215,7 +231,6 @@ def writedata(request,datanum):
 		kkkk = '''document.getElementsByName("fitment")[0].value="精装"
 document.getElementsByName("forward")[0].value="南北通透"
 document.getElementsByName("payment")[0].value="月付"
-document.getElementsByName("rentroom")[0].value="次卧"
 document.getElementById("jsAllcheckbox").checked=true
 
 for (var i = 10 - 1; i >= 0; i--) {
@@ -224,9 +239,25 @@ document.getElementsByName("equipment[]")[i].checked=true
 '''
 
 		f.write(kkkk)
+
+		#主次卧调换
+		if int(returndata.rentfl)%100 == 0:
+			f.write('document.getElementsByName("rentroom")[0].value="次卧"\n')
+		else:
+			f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
+
+		#标题调换
 		title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
-		f.write('document.getElementById("address").value="%s"\n' % title)
-		
+		if int(returndata.rentfl)%100 == 0:
+			f.write('document.getElementById("address").value="%s"\n' % title)
+		elif int(returndata.rentfl)%50 == 0:
+			title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+			f.write('document.getElementById("address").value="%s"\n' % title)
+		else:
+			title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+			f.write('document.getElementById("address").value="%s"\n' % title)
+
+
 		selectpic = '''
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
