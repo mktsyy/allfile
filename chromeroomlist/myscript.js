@@ -7,7 +7,11 @@
 setTimeout(function() {
     document.getElementById("price_sort").click();
     document.getElementsByTagName("TITLE")[0].text = document.getElementsByClassName("house_title")[0].innerText.split("·")[1];
-    document.getElementsByClassName("house_title")[0].childNodes[0].click();
+    
+
+    setInterval(function(){
+        document.getElementsByClassName("house_title")[0].childNodes[0].click();
+    },2000)
     //点击选择链接，窗口自动关闭（自动点击不成功）
     // document.getElementsByClassName("house_title")[0].childNodes[0].onclick = function() {
     //     window.location.href = "about:blank";
