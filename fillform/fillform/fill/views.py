@@ -7,6 +7,7 @@ from fill.models import Person
 from fill.models import Information
 import json
 from django.http import JsonResponse
+from PIL import Image
 
 # Create your views here.
 # 
@@ -27,7 +28,7 @@ def fill(request):
 	g = request.GET.get('g',0)
 	h = request.GET.get('h',0)
 
-	
+
 	if a:
 		#写入数据库
 		Person.objects.create(tier=a,houseinfo=b,housecf=c,rentfl=d,housecf5=e)
@@ -202,6 +203,7 @@ def getid(a):
 	return id
 
 
+
 def writedata(request,datanum):
 	returndata = Person.objects.all()[len(Person.objects.all())-int(datanum)]
 	print returndata.tier
@@ -342,3 +344,14 @@ document.onkeydown=function(event){
 	response["Access-Control-Max-Age"] = "1000"
 	response["Access-Control-Allow-Headers"] = "*"
 	return response
+
+def uploadpic(request):
+	print "here"
+	if request.method=='POST':
+		photo=request.FILES['photo']
+		print photo
+		img=Image.open(photo)
+		img.save('D:\codes\\allfile\\fillform\\fillform\\fill\\templates\\temp.jpg')
+		return HttpResponse ("ok")
+	return render(request,"upload.html")
+

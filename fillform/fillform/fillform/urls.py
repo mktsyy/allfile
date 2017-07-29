@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^fill/', views.fill),
     url(r'^writedata/(\d+)/', views.writedata),
+    url(r'^uploadpic', views.uploadpic),
 ]
