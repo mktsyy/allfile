@@ -1,14 +1,14 @@
-console.log("%c万达紫金明珠", "color: #e40c0c;font-size: xx-large;")
+console.log("%c骆村新寓", "color: #e40c0c;font-size: xx-large;")
 document.getElementById("muban").click();
-document.getElementById("blockshowname").value="万达紫金明珠"
+document.getElementById("blockshowname").value="骆村新寓"
 document.getElementsByName("renttype")[1].checked = true
-document.getElementById("price").value=1450
-document.getElementById("buildarea").value=20
-document.getElementsByName("room")[0].value=4
-document.getElementsByName("hall")[0].value=1
-document.getElementsByName("toilet")[0].value=2
-document.getElementsByName("floor")[0].value=4
-document.getElementsByName("totalfloor")[0].value=7
+document.getElementById("price").value=750
+document.getElementById("buildarea").value=13
+document.getElementsByName("room")[0].value=3
+document.getElementsByName("hall")[0].value=2
+document.getElementsByName("toilet")[0].value=1
+document.getElementsByName("floor")[0].value=9
+document.getElementsByName("totalfloor")[0].value=23
 document.getElementsByName("fitment")[0].value="精装"
 document.getElementsByName("forward")[0].value="南北通透"
 document.getElementsByName("payment")[0].value="月付"
@@ -19,7 +19,7 @@ document.getElementsByName("equipment[]")[i].checked=true
 };
 
 document.getElementsByName("rentroom")[0].value="主卧"
-document.getElementById("address").value="万达紫金明珠采光好 空间大 小区绿化好 配套齐全 环境舒适"
+document.getElementById("address").value="骆村新寓采光好 空间大 小区绿化好 配套齐全 环境舒适"
 
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
@@ -41,7 +41,7 @@ xmlhttp.onreadystatechange = function() {
         window.scroll(100,1650);
     } 
 }
-xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=1575" , true);
+xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=231677" , true);
 
 xmlhttp.send();
 

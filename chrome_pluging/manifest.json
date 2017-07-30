@@ -8,7 +8,7 @@
   },
 "content_scripts": [
     {
-      "matches": ["http://www.hizhu.com/nanjing/roomdetail.html*"],
+      "matches": ["http://waf.hizhu.com/nanjing/roomdetail.html*"],
       "js": ["myscript.js"]
     }
   ]
