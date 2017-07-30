@@ -33,10 +33,14 @@ def fill(request):
 		#写入数据库
 		Person.objects.create(tier=a,houseinfo=b,housecf=c,rentfl=d,housecf5=e)
 		returndata = Person.objects.all()[len(Person.objects.all())-1]
+<<<<<<< HEAD
 
 		readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
 		readscriptpath.replace("\\","\\\\")
 		with open(readscriptpath,"w+") as f:
+=======
+		with open("F:\python_code\\allfile5\\allfile\chrome_fill_login\\readscript.js","w+") as f:
+>>>>>>> 21ad053c92531e7f2b620a509365d42e56c3914a
 			f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
 			f.write('document.getElementById("muban").click();\n')
 			f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
@@ -197,9 +201,13 @@ document.onkeydown=function(event){
 
 
 def getid(a):
+<<<<<<< HEAD
 	idpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))+"\id.html"
 	idpath.replace("\\","\\\\")
 	with open(idpath,"r") as f:
+=======
+	with open("F:\python_code\\allfile5\id.html","r") as f:
+>>>>>>> 21ad053c92531e7f2b620a509365d42e56c3914a
 		for i in f.readlines():
 			if a in i:
 				id =  i.split('addlishi(')[1].split(')')[0]
@@ -213,10 +221,14 @@ def writedata(request,datanum):
 	returndata = Person.objects.all()[len(Person.objects.all())-int(datanum)]
 	print returndata.tier
 	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8")}
+<<<<<<< HEAD
 
 	readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
 	readscriptpath.replace("\\","\\\\")
 	with open(readscriptpath,"w+") as f:
+=======
+	with open("F:\python_code\\allfile5\\allfile\chrome_fill_login\\readscript.js","w+") as f:
+>>>>>>> 21ad053c92531e7f2b620a509365d42e56c3914a
 		f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
 		f.write('document.getElementById("muban").click();\n')
 		f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
@@ -354,12 +366,13 @@ document.onkeydown=function(event){
 	return response
 
 def uploadpic(request):
-	print "here"
+	
 	if request.method=='POST':
 		photo=request.FILES['photo']
-		print photo
-		img=Image.open(photo)
-		img.save('D:\codes\\allfile\\fillform\\fillform\\fill\\templates\\temp.jpg')
-		return HttpResponse ("ok")
+		if photo:
+			print str(photo) 
+			img=Image.open(photo)
+			img.save('F:\python_code\\temp.jpg')
+			return HttpResponse ("ok")
 	return render(request,"upload.html")
 
