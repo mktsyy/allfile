@@ -8,7 +8,7 @@ from fill.models import Information
 import json
 from django.http import JsonResponse
 from PIL import Image
-
+import os
 # Create your views here.
 # 
 import sys
@@ -33,7 +33,10 @@ def fill(request):
 		#写入数据库
 		Person.objects.create(tier=a,houseinfo=b,housecf=c,rentfl=d,housecf5=e)
 		returndata = Person.objects.all()[len(Person.objects.all())-1]
-		with open("D:\codes\\allfile\chrome_fill_login\\readscript.js","w+") as f:
+
+		readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
+		readscriptpath.replace("\\","\\\\")
+		with open(readscriptpath,"w+") as f:
 			f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
 			f.write('document.getElementById("muban").click();\n')
 			f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
@@ -194,7 +197,9 @@ document.onkeydown=function(event){
 
 
 def getid(a):
-	with open("D:\codes\\allfile\id.html","r") as f:
+	idpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))+"\id.html"
+	idpath.replace("\\","\\\\")
+	with open(idpath,"r") as f:
 		for i in f.readlines():
 			if a in i:
 				id =  i.split('addlishi(')[1].split(')')[0]
@@ -208,7 +213,10 @@ def writedata(request,datanum):
 	returndata = Person.objects.all()[len(Person.objects.all())-int(datanum)]
 	print returndata.tier
 	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8")}
-	with open("D:\codes\\allfile\chrome_fill_login\\readscript.js","w+") as f:
+
+	readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
+	readscriptpath.replace("\\","\\\\")
+	with open(readscriptpath,"w+") as f:
 		f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
 		f.write('document.getElementById("muban").click();\n')
 		f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
