@@ -39,7 +39,7 @@ def fill(request):
 		readscriptpath.replace("\\","\\\\")
 		with open(readscriptpath,"w+") as f:
 
-		with open("F:\python_code\\allfile5\\allfile\chrome_fill_login\\readscript.js","w+") as f:
+		# with open("F:\python_code\\allfile5\\allfile\chrome_fill_login\\readscript.js","w+") as f:
 
 			f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
 			f.write('document.getElementById("muban").click();\n')
@@ -206,7 +206,7 @@ def getid(a):
 	idpath.replace("\\","\\\\")
 	with open(idpath,"r") as f:
 
-	with open("F:\python_code\\allfile5\id.html","r") as f:
+	# with open("F:\python_code\\allfile5\id.html","r") as f:
 
 		for i in f.readlines():
 			if a in i:
@@ -227,7 +227,7 @@ def writedata(request,datanum):
 	readscriptpath.replace("\\","\\\\")
 	with open(readscriptpath,"w+") as f:
 
-	with open("F:\python_code\\allfile5\\allfile\chrome_fill_login\\readscript.js","w+") as f:
+	# with open("F:\python_code\\allfile5\\allfile\chrome_fill_login\\readscript.js","w+") as f:
 
 		f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
 		f.write('document.getElementById("muban").click();\n')
