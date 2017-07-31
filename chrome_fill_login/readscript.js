@@ -1,10 +1,10 @@
-console.log("%c仙居华庭", "color: #e40c0c;font-size: xx-large;")
+console.log("%c合家春天", "color: #e40c0c;font-size: xx-large;")
 document.getElementById("muban").click();
-document.getElementById("blockshowname").value="仙居华庭"
+document.getElementById("blockshowname").value="合家春天"
 document.getElementsByName("renttype")[1].checked = true
-document.getElementById("price").value=650
-document.getElementById("buildarea").value=10
-document.getElementsByName("room")[0].value=3
+document.getElementById("price").value=1300
+document.getElementById("buildarea").value=20
+document.getElementsByName("room")[0].value=2
 document.getElementsByName("hall")[0].value=1
 document.getElementsByName("toilet")[0].value=1
 document.getElementsByName("floor")[0].value=8
@@ -18,8 +18,8 @@ for (var i = 10 - 1; i >= 0; i--) {
 document.getElementsByName("equipment[]")[i].checked=true
 };
 
-document.getElementsByName("rentroom")[0].value="主卧"
-document.getElementById("address").value="仙居华庭采光好 空间大 小区绿化好 配套齐全 环境舒适"
+document.getElementsByName("rentroom")[0].value="次卧"
+document.getElementById("address").value="合家春天环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
 
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
@@ -41,7 +41,7 @@ xmlhttp.onreadystatechange = function() {
         window.scroll(100,1650);
     } 
 }
-xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=1222" , true);
+xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=1475" , true);
 
 xmlhttp.send();
 

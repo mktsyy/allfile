@@ -354,12 +354,11 @@ document.onkeydown=function(event){
 	return response
 
 def uploadpic(request):
-	print "here"
 	if request.method=='POST':
 		photo=request.FILES['photo']
-		print photo
-		img=Image.open(photo)
-		img.save('D:\codes\\allfile\\fillform\\fillform\\fill\\templates\\temp.jpg')
+		if photo:
+			img=Image.open(photo)
+			img.save('D:\codes\\temp.jpeg')
 		return HttpResponse ("ok")
 	return render(request,"upload.html")
 
