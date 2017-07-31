@@ -1,10 +1,10 @@
-console.log("%c合家春天", "color: #e40c0c;font-size: xx-large;")
+console.log("%c金山花苑", "color: #e40c0c;font-size: xx-large;")
 document.getElementById("muban").click();
-document.getElementById("blockshowname").value="合家春天"
+document.getElementById("blockshowname").value="金山花苑"
 document.getElementsByName("renttype")[1].checked = true
-document.getElementById("price").value=1300
-document.getElementById("buildarea").value=20
-document.getElementsByName("room")[0].value=2
+document.getElementById("price").value=500
+document.getElementById("buildarea").value=12
+document.getElementsByName("room")[0].value=3
 document.getElementsByName("hall")[0].value=1
 document.getElementsByName("toilet")[0].value=1
 document.getElementsByName("floor")[0].value=8
@@ -19,7 +19,7 @@ document.getElementsByName("equipment[]")[i].checked=true
 };
 
 document.getElementsByName("rentroom")[0].value="次卧"
-document.getElementById("address").value="合家春天环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+document.getElementById("address").value="金山花苑环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
 
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
@@ -41,7 +41,7 @@ xmlhttp.onreadystatechange = function() {
         window.scroll(100,1650);
     } 
 }
-xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=1475" , true);
+xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=3239" , true);
 
 xmlhttp.send();
 

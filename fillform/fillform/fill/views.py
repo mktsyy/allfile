@@ -210,7 +210,7 @@ def getid(a):
 
 
 def writedata(request,datanum):
-	returndata = Person.objects.all()[len(Person.objects.all())-int(datanum)]
+	returndata = Person.objects.all()[int(datanum)]
 	print returndata.tier
 	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8")}
 
@@ -358,7 +358,7 @@ def uploadpic(request):
 		photo=request.FILES['photo']
 		if photo:
 			img=Image.open(photo)
-			img.save('D:\codes\\temp.jpeg')
+			img.save('D:\codes\\'+str(photo))
 		return HttpResponse ("ok")
 	return render(request,"upload.html")
 

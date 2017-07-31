@@ -2,6 +2,12 @@
 //     document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
      
 // },3000)
+// 
+
+//在同一窗口打开房源信息
+setInterval(function(){
+    document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
+},500)
 
 //自动价格排序
 setTimeout(function() {
@@ -23,7 +29,3 @@ setTimeout(function() {
 
 }, 2000)
 
-//在同一窗口打开房源信息
-setInterval(function(){
-    document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
-},500)
