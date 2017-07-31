@@ -1,10 +1,10 @@
-console.log("%c东方万汇城", "color: #e40c0c;font-size: xx-large;")
+console.log("%c万达西地.二街区", "color: #e40c0c;font-size: xx-large;")
 document.getElementById("muban").click();
-document.getElementById("blockshowname").value="东方万汇城"
+document.getElementById("blockshowname").value="万达西地.二街区"
 document.getElementsByName("renttype")[1].checked = true
-document.getElementById("price").value=1500
-document.getElementById("buildarea").value=15
-document.getElementsByName("room")[0].value=2
+document.getElementById("price").value=750
+document.getElementById("buildarea").value=10
+document.getElementsByName("room")[0].value=6
 document.getElementsByName("hall")[0].value=1
 document.getElementsByName("toilet")[0].value=1
 document.getElementsByName("floor")[0].value=8
@@ -18,8 +18,8 @@ for (var i = 10 - 1; i >= 0; i--) {
 document.getElementsByName("equipment[]")[i].checked=true
 };
 
-document.getElementsByName("rentroom")[0].value="次卧"
-document.getElementById("address").value="东方万汇城环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+document.getElementsByName("rentroom")[0].value="主卧"
+document.getElementById("address").value="万达西地.二街区采光好 空间大 小区绿化好 配套齐全 环境舒适"
 
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
@@ -57,5 +57,3 @@ document.onkeydown=function(event){
        document.getElementById("jsBtnSubmit_rent").click();
   }
 }; 
-
-		
