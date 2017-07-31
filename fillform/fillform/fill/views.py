@@ -197,7 +197,7 @@ document.onkeydown=function(event){
 
 
 def getid(a):
-	idpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))+"\id.html"
+	idpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\id.html"
 	idpath.replace("\\","\\\\")
 	with open(idpath,"r") as f:
 		for i in f.readlines():

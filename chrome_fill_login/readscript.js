@@ -1,10 +1,10 @@
-console.log("%c万达西地.二街区", "color: #e40c0c;font-size: xx-large;")
+console.log("%c仙居华庭", "color: #e40c0c;font-size: xx-large;")
 document.getElementById("muban").click();
-document.getElementById("blockshowname").value="万达西地.二街区"
+document.getElementById("blockshowname").value="仙居华庭"
 document.getElementsByName("renttype")[1].checked = true
-document.getElementById("price").value=750
+document.getElementById("price").value=650
 document.getElementById("buildarea").value=10
-document.getElementsByName("room")[0].value=6
+document.getElementsByName("room")[0].value=3
 document.getElementsByName("hall")[0].value=1
 document.getElementsByName("toilet")[0].value=1
 document.getElementsByName("floor")[0].value=8
@@ -19,7 +19,7 @@ document.getElementsByName("equipment[]")[i].checked=true
 };
 
 document.getElementsByName("rentroom")[0].value="主卧"
-document.getElementById("address").value="万达西地.二街区采光好 空间大 小区绿化好 配套齐全 环境舒适"
+document.getElementById("address").value="仙居华庭采光好 空间大 小区绿化好 配套齐全 环境舒适"
 
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
@@ -41,7 +41,7 @@ xmlhttp.onreadystatechange = function() {
         window.scroll(100,1650);
     } 
 }
-xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=8814" , true);
+xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=1222" , true);
 
 xmlhttp.send();
 
@@ -57,3 +57,5 @@ document.onkeydown=function(event){
        document.getElementById("jsBtnSubmit_rent").click();
   }
 }; 
+
+		
