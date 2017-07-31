@@ -1,10 +1,10 @@
-console.log("%c翰香苑", "color: #e40c0c;font-size: xx-large;")
+console.log("%c东方万汇城", "color: #e40c0c;font-size: xx-large;")
 document.getElementById("muban").click();
-document.getElementById("blockshowname").value="翰香苑"
+document.getElementById("blockshowname").value="东方万汇城"
 document.getElementsByName("renttype")[1].checked = true
-document.getElementById("price").value=2400
-document.getElementById("buildarea").value=90
-document.getElementsByName("room")[0].value=3
+document.getElementById("price").value=1500
+document.getElementById("buildarea").value=15
+document.getElementsByName("room")[0].value=2
 document.getElementsByName("hall")[0].value=1
 document.getElementsByName("toilet")[0].value=1
 document.getElementsByName("floor")[0].value=8
@@ -19,7 +19,7 @@ document.getElementsByName("equipment[]")[i].checked=true
 };
 
 document.getElementsByName("rentroom")[0].value="次卧"
-document.getElementById("address").value="翰香苑环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+document.getElementById("address").value="东方万汇城环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
 
 setTimeout(function(){
 for (var i = 1; i < 5; i++) {
@@ -41,7 +41,7 @@ xmlhttp.onreadystatechange = function() {
         window.scroll(100,1650);
     } 
 }
-xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=3549" , true);
+xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=8814" , true);
 
 xmlhttp.send();
 
