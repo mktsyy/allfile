@@ -19,49 +19,33 @@
 
     function delnum() {
         iii--;
-        var xmlhttp;
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("text1").innerText = JSON.parse(xmlhttp.responseText).tier;
-                document.getElementById("price").innerText = JSON.parse(xmlhttp.responseText).price;
-                
-            }
-            else{
-                document.getElementById("text1").innerText = "id找不到！id找不到";
-                document.getElementById("price").innerText = "同上同上同上同上";
-            }
-        }
-        xmlhttp.open("GET", "http://localhost:8000/writedata/" + iii.toString() + "/", true);
-        document.getElementById("num").innerText = iii;
-        xmlhttp.send();
-
-
+        sendpage();
     }
 
 
     function addnum() {
         iii++;
-        var xmlhttp;
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                console.log(xmlhttp.responseText);
-                document.getElementById("text1").innerText = JSON.parse(xmlhttp.responseText).tier;
-                document.getElementById("price").innerText = JSON.parse(xmlhttp.responseText).price;
-                
-            }
-            else{
-                document.getElementById("text1").innerText = "id找不到！id找不到";
-                document.getElementById("price").innerText = "同上同上同上同上";
-            }
-        }
-        console.log(iii.toString());
-        xmlhttp.open("GET", "http://127.0.0.1:8000/writedata/" + iii.toString() + "/", true);
-        document.getElementById("num").innerText = iii;
-        xmlhttp.send();
-
+        sendpage();
     };
+
+    function sendpage(){
+    var xmlhttp;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("text1").innerText = JSON.parse(xmlhttp.responseText).tier;
+            document.getElementById("price").innerText = JSON.parse(xmlhttp.responseText).price;
+            
+        }
+        else{
+            document.getElementById("text1").innerText = "id找不到！id找不到";
+            document.getElementById("price").innerText = "同上同上同上同上";
+        }
+    }
+    xmlhttp.open("GET", "http://localhost:8000/writedata/" + iii.toString() + "/", true);
+    document.getElementById("num").innerText = iii;
+    xmlhttp.send();
+}
 
      function empty() {
         var xmlhttp;
