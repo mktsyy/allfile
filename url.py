@@ -20,7 +20,7 @@ with open("party.txt",'r') as f:
 				document.getElementsByTagName("a")[num-i].click();
 				document.getElementsByTagName("a")[num-i].style.color="#ff0000";
 				i++;
-			} while(i<11)
+			} while(i<6)
 		}
 			</script>
 		</head>
@@ -32,7 +32,7 @@ with open("party.txt",'r') as f:
 
 		for k in f.readlines():
 			i = str(llll)+'.<A HREF="http://waf.hizhu.com/nanjing/roomlist.html?key_self=1&key=%s#c=nj&max=999999&min=0&housecount=11&logicSort=2" target="_blank" >%s</A>' % (k,k)
-			if llll % 10 == 0:
+			if llll % 5 == 0:
 				button = '<button onclick="openurl(%s)">打开</button>' % str(llll)
 				g.write(i+button+"<br>"+"\n")	
 			# elif llll % 10 == 0:
