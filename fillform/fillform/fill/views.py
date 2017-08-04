@@ -271,6 +271,9 @@ document.getElementsByName("equipment[]")[i].checked=true
 		# 	f.write('document.getElementById("address").value="%s"\n' % title)
 
 		#每次更换标题信息
+		if int(datanum) - othervarible.FIRSTNUM < 0:
+			othervarible.FIRSTNUM = othervarible.FIRSTNUM - 3
+			
 		print othervarible.FIRSTNUM
 		if int(datanum)-othervarible.FIRSTNUM== 0:
 			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
