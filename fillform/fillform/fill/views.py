@@ -9,6 +9,7 @@ import json
 from django.http import JsonResponse
 from PIL import Image
 import os
+import othervarible
 # Create your views here.
 # 
 import sys
@@ -16,6 +17,7 @@ defaultencoding = 'utf-8'
 if sys.getdefaultencoding() != defaultencoding:
     reload(sys)
     sys.setdefaultencoding(defaultencoding)
+
 
 
 def fill(request):
@@ -32,135 +34,135 @@ def fill(request):
 	if a:
 		#写入数据库
 		Person.objects.create(tier=a,houseinfo=b,housecf=c,rentfl=d,housecf5=e)
-		returndata = Person.objects.all()[len(Person.objects.all())-1]
+# 		returndata = Person.objects.all()[len(Person.objects.all())-1]
 
-		readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
-		readscriptpath.replace("\\","\\\\")
-		with open(readscriptpath,"w+") as f:
-			f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
-			f.write('document.getElementById("muban").click();\n')
-			f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
-			f.write('document.getElementsByName("renttype")[1].checked = true\n')
-			f.write('document.getElementById("price").value=%s\n' % returndata.rentfl.encode("utf-8"))
-			f.write('document.getElementById("buildarea").value=%s\n' % returndata.housecf.encode("utf-8").split('㎡')[0])
-			f.write('document.getElementsByName("room")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
-			f.write('document.getElementsByName("hall")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0])
-			f.write('document.getElementsByName("toilet")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0])
+# 		readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
+# 		readscriptpath.replace("\\","\\\\")
+# 		with open(readscriptpath,"w+") as f:
+# 			f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
+# 			f.write('document.getElementById("muban").click();\n')
+# 			f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
+# 			f.write('document.getElementsByName("renttype")[1].checked = true\n')
+# 			f.write('document.getElementById("price").value=%s\n' % returndata.rentfl.encode("utf-8"))
+# 			f.write('document.getElementById("buildarea").value=%s\n' % returndata.housecf.encode("utf-8").split('㎡')[0])
+# 			f.write('document.getElementsByName("room")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
+# 			f.write('document.getElementsByName("hall")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0])
+# 			f.write('document.getElementsByName("toilet")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0])
 
-			if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
-				f.write('document.getElementsByName("floor")[0].value=%s\n' % "3")
-			else:
-				f.write('document.getElementsByName("floor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[0])
+# 			if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
+# 				f.write('document.getElementsByName("floor")[0].value=%s\n' % "3")
+# 			else:
+# 				f.write('document.getElementsByName("floor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[0])
 
-			if int(returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])==0:
-				f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % "7")
-			else:
-				f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
+# 			if int(returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])==0:
+# 				f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % "7")
+# 			else:
+# 				f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
 			
 
-			kkkk = '''document.getElementsByName("fitment")[0].value="精装"
-document.getElementsByName("forward")[0].value="南北通透"
-document.getElementsByName("payment")[0].value="月付"
+# 			kkkk = '''document.getElementsByName("fitment")[0].value="精装"
+# document.getElementsByName("forward")[0].value="南北通透"
+# document.getElementsByName("payment")[0].value="月付"
 
-document.getElementById("jsAllcheckbox").checked=true
+# document.getElementById("jsAllcheckbox").checked=true
 
-for (var i = 10 - 1; i >= 0; i--) {
-	document.getElementsByName("equipment[]")[i].checked=true
-};\n
-'''
+# for (var i = 10 - 1; i >= 0; i--) {
+# 	document.getElementsByName("equipment[]")[i].checked=true
+# };\n
+# '''
 
-			f.write(kkkk)
+# 			f.write(kkkk)
 
-			#主次卧调换
-			if int(returndata.rentfl)%100 == 0:
-				f.write('document.getElementsByName("rentroom")[0].value="次卧"\n')
-			else:
-				f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
+# 			#主次卧调换
+# 			if int(returndata.rentfl)%100 == 0:
+# 				f.write('document.getElementsByName("rentroom")[0].value="次卧"\n')
+# 			else:
+# 				f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
 
-			#标题调换
-			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
-			if int(returndata.rentfl)%100 == 0:
-				f.write('document.getElementById("address").value="%s"\n' % title)
-			elif int(returndata.rentfl)%50 == 0:
-				title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
-				f.write('document.getElementById("address").value="%s"\n' % title)
-			else:
-				title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
-				f.write('document.getElementById("address").value="%s"\n' % title)
+# 			#标题调换
+# 			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+# 			if int(returndata.rentfl)%100 == 0:
+# 				f.write('document.getElementById("address").value="%s"\n' % title)
+# 			elif int(returndata.rentfl)%50 == 0:
+# 				title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+# 				f.write('document.getElementById("address").value="%s"\n' % title)
+# 			else:
+# 				title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+# 				f.write('document.getElementById("address").value="%s"\n' % title)
 
 			
-			selectpic = '''
-setTimeout(function(){
-for (var i = 1; i < 5; i++) {
-	document.getElementsByClassName("btn")[i].click()
-	}
-},1000)
-''' 
-			f.write(selectpic)
-			#拿取小区地址自动填入
-			idjavascript = '''
-function myTimer() {
-    var xmlhttp;
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+# 			selectpic = '''
+# setTimeout(function(){
+# for (var i = 1; i < 5; i++) {
+# 	document.getElementsByClassName("btn")[i].click()
+# 	}
+# },1000)
+# ''' 
+# 			f.write(selectpic)
+# 			#拿取小区地址自动填入
+# 			idjavascript = '''
+# function myTimer() {
+#     var xmlhttp;
+#     xmlhttp = new XMLHttpRequest();
+#     xmlhttp.onreadystatechange = function() {
+#         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             
-            console.log(JSON.parse(xmlhttp.responseText))
-            document.getElementById("district").value = JSON.parse(xmlhttp.responseText).district
-            document.getElementById("street").value = JSON.parse(xmlhttp.responseText).streetname
-            document.getElementById("blockaddress").value = JSON.parse(xmlhttp.responseText).address
-            document.getElementById("blockshowname").value=JSON.parse(xmlhttp.responseText).blockname
-            window.scroll(100,1650);
-        } 
-    }
-    xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=%s" , true);
+#             console.log(JSON.parse(xmlhttp.responseText))
+#             document.getElementById("district").value = JSON.parse(xmlhttp.responseText).district
+#             document.getElementById("street").value = JSON.parse(xmlhttp.responseText).streetname
+#             document.getElementById("blockaddress").value = JSON.parse(xmlhttp.responseText).address
+#             document.getElementById("blockshowname").value=JSON.parse(xmlhttp.responseText).blockname
+#             window.scroll(100,1650);
+#         } 
+#     }
+#     xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=%s" , true);
     
-    xmlhttp.send();
+#     xmlhttp.send();
 
-};
-myTimer();\n
+# };
+# myTimer();\n
 
-document.onkeydown=function(event){
-      var e = event || window.event || arguments.callee.caller.arguments[0];
+# document.onkeydown=function(event){
+#       var e = event || window.event || arguments.callee.caller.arguments[0];
                 
-       // if(e && e.keyCode==13){ // enter 键
-       if(e && e.keyCode==32){ // space 键
-           document.getElementById("jsBtnSubmit_rent").click();
-      }
-  }; 
+#        // if(e && e.keyCode==13){ // enter 键
+#        if(e && e.keyCode==32){ // space 键
+#            document.getElementById("jsBtnSubmit_rent").click();
+#       }
+#   }; 
 
-			''' % (str(getid((returndata.tier).encode("utf-8"))))
+# 			''' % (str(getid((returndata.tier).encode("utf-8"))))
 
-			f.write(idjavascript)
+# 			f.write(idjavascript)
 			
-			# content = '''
-			# 嗨住的优质房源
-			# 【便利的交通&成熟的配套】
-			# 超市，银行，医院，学校，便利店，菜市场，购物广场应有尽有,安全性高、位置安静、靠近花园、采光什么都非常好
-			# 【装修精致\配套成熟的整租房源】
+# 			# content = '''
+# 			# 嗨住的优质房源
+# 			# 【便利的交通&成熟的配套】
+# 			# 超市，银行，医院，学校，便利店，菜市场，购物广场应有尽有,安全性高、位置安静、靠近花园、采光什么都非常好
+# 			# 【装修精致\配套成熟的整租房源】
 
-			# 厨房、卫生间、热水器、空调、WIFI,设备齐全，拎包就能入住,还有送车位的哦~
-			# 【有趣善良的合租室友】
-			# 那些直播里的萌妹纸、那些陆家嘴的金融GG、那些一身正气的程序员，可能就是你隔壁的室友~那些合租的小伙伴都是素质住户
-			# 【品质小区】
-			# 小区都处于繁华地段、房型正、佳、环境非常优美、都是一些次新小区
-			# 嗨住的优质服务
-			# * 无任何中介费
-			# 嗨住房源实地勘察，保证嗨住租房平台房源可租信息实时可靠
-			# * 房源广（7x24不断更新中）
-			# 上海房源48396、北京16411、杭州23495、南京12055
-			# * 直呼房东
-			# 租客可通过嗨住租房上公开的房东电话，直接呼叫联系房东，询问房屋信息、预约看 房、达成交易。
-			# * 免费预约
-			# 租客可直接在嗨住租房平台提交对某套房的看房预约请求，嗨住顾问将免费为租客协调与房东的见面时间，与房东直接见面，达成交易。
-			# * 租后服务
-			# 嗨住还为租客提供了房租分期、室友征选、搬家维修等系列租后服务。
-			# 更多房源欢迎致电4008180555(上海4008180555，杭州4008170019，南京4001606145）
-			# 或
-			# 至任意手机应用市场下载“嗨住租房”app
+# 			# 厨房、卫生间、热水器、空调、WIFI,设备齐全，拎包就能入住,还有送车位的哦~
+# 			# 【有趣善良的合租室友】
+# 			# 那些直播里的萌妹纸、那些陆家嘴的金融GG、那些一身正气的程序员，可能就是你隔壁的室友~那些合租的小伙伴都是素质住户
+# 			# 【品质小区】
+# 			# 小区都处于繁华地段、房型正、佳、环境非常优美、都是一些次新小区
+# 			# 嗨住的优质服务
+# 			# * 无任何中介费
+# 			# 嗨住房源实地勘察，保证嗨住租房平台房源可租信息实时可靠
+# 			# * 房源广（7x24不断更新中）
+# 			# 上海房源48396、北京16411、杭州23495、南京12055
+# 			# * 直呼房东
+# 			# 租客可通过嗨住租房上公开的房东电话，直接呼叫联系房东，询问房屋信息、预约看 房、达成交易。
+# 			# * 免费预约
+# 			# 租客可直接在嗨住租房平台提交对某套房的看房预约请求，嗨住顾问将免费为租客协调与房东的见面时间，与房东直接见面，达成交易。
+# 			# * 租后服务
+# 			# 嗨住还为租客提供了房租分期、室友征选、搬家维修等系列租后服务。
+# 			# 更多房源欢迎致电4008180555(上海4008180555，杭州4008170019，南京4001606145）
+# 			# 或
+# 			# 至任意手机应用市场下载“嗨住租房”app
 
 
-			# '''
+# 			# '''
 
 			
 
@@ -197,6 +199,7 @@ document.onkeydown=function(event){
 
 
 def getid(a):
+
 	idpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\id.html"
 	idpath.replace("\\","\\\\")
 	with open(idpath,"r") as f:
@@ -222,7 +225,7 @@ def writedata(request,datanum):
 		f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
 		f.write('document.getElementsByName("renttype")[1].checked = true\n')
 		f.write('document.getElementById("price").value=%s\n' % returndata.rentfl.encode("utf-8"))
-		f.write('document.getElementById("buildarea").value=%s\n' % returndata.housecf.encode("utf-8").split('㎡')[0])
+		f.write('document.getElementById("buildarea").value=%s\n' % returndata.housecf.encode("utf-8").split('m²')[0])
 		f.write('document.getElementsByName("room")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
 		f.write('document.getElementsByName("hall")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0])
 		f.write('document.getElementsByName("toilet")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0])
@@ -257,15 +260,28 @@ document.getElementsByName("equipment[]")[i].checked=true
 			f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
 
 		#标题调换
-		title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
-		if int(returndata.rentfl)%100 == 0:
+		# title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+		# if int(returndata.rentfl)%100 == 0:
+		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		# elif int(returndata.rentfl)%50 == 0:
+		# 	title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		# else:
+		# 	title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+
+		#每次更换标题信息
+		print othervarible.FIRSTNUM
+		if int(datanum)-othervarible.FIRSTNUM== 0:
+			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
 			f.write('document.getElementById("address").value="%s"\n' % title)
-		elif int(returndata.rentfl)%50 == 0:
+		elif int(datanum)-othervarible.FIRSTNUM== 1:
 			title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
 			f.write('document.getElementById("address").value="%s"\n' % title)
-		else:
+		elif int(datanum)-othervarible.FIRSTNUM== 2:
 			title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
 			f.write('document.getElementById("address").value="%s"\n' % title)
+			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
 
 		selectpic = '''
