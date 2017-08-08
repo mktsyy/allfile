@@ -215,7 +215,8 @@ def getid(a):
 def writedata(request,datanum):
 	returndata = Person.objects.all()[int(datanum)]
 	print returndata.tier
-	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8")}
+	housenum = len(Person.objects.all())
+	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8"),"housenum":str(housenum)}
 
 	readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
 	readscriptpath.replace("\\","\\\\")

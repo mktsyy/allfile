@@ -12,6 +12,9 @@
 #button2{
     float: right;
 }
+#housenum{
+    float: right;
+}
     </style>
     <script>
     var iii = -1;
@@ -41,11 +44,13 @@
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             document.getElementById("text1").innerText = JSON.parse(xmlhttp.responseText).tier;
             document.getElementById("price").innerText = JSON.parse(xmlhttp.responseText).price;
+            document.getElementById("housenum").innerText = JSON.parse(xmlhttp.responseText).housenum;
             
         }
         else{
             document.getElementById("text1").innerText = "id找不到！id找不到";
             document.getElementById("price").innerText = "同上同上同上同上";
+            document.getElementById("housenum").innerText = "同上同上同上同上";
         }
     }
     xmlhttp.open("GET", "http://localhost:8000/writedata/" + iii.toString() + "/", true);
@@ -76,6 +81,7 @@
 <b id = "num"></b><br>
 <b id="text1">首页</b>
 <b id="price">没有</b>
+<b id="housenum">没有</b>
 </div>
 
 <body>
