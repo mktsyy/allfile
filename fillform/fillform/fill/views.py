@@ -381,3 +381,32 @@ def uploadpic(request):
 		return HttpResponse ("ok")
 	return render(request,"upload.html")
 
+def writeAnjukeDate(request,datanum):
+	returndata = Person.objects.all()[int(datanum)]
+	readscriptpath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\\fillAnjuke\\readscript.js"
+
+	with open(readscriptpath,"w+") as f:
+		fillAnjuke = '''
+			document.getElementsByName("room")[0].value = %s ;
+			document.getElementsByName("hall")[0].value = %s ;
+			document.getElementsByName("bathroom")[0].value = %s ;
+			document.getElementsByName("roomarea")[0].value = %s ;
+			document.getElementsByName("rentprice")[0].value = %s ;
+
+		''' % (returndata.houseinfo.encode("utf-8").split("室")[0],returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0],
+				returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0],returndata.housecf.encode("utf-8").split('m²')[0],
+				returndata.rentfl.encode("utf-8")
+			)
+		f.write(fillAnjuke)
+
+		if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
+			f.write('document.getElementsByName("floor")[0].value = %s\n' % "3")
+		else:
+			f.write('document.getElementsByName("floor")[0].value = %s\n' % returndata.housecf5.encode("utf-8").split("/")[0])
+
+		if int(returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])==0:
+			f.write('document.getElementsByName("allFloor")[0].value = %s\n' % "7")
+		else:
+			f.write('document.getElementsByName("allFloor")[0].value = %s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
+			
+

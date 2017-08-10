@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^fill/', views.fill),
     url(r'^writedata/(\d+)/', views.writedata),
     url(r'^uploadpic', views.uploadpic),
+    url(r'^writeAnjukeDate/(\d+)/', views.writeAnjukeDate),
 ]
