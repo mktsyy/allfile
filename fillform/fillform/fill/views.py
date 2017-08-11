@@ -398,6 +398,29 @@ def writeAnjukeDate(request,datanum):
 			document.getElementsByName("bathroom")[0].value = %s ;
 			document.getElementsByName("roomarea")[0].value = %s ;
 			document.getElementsByName("rentprice")[0].value = %s ;
+			
+			//房屋类型
+			document.getElementsByName("housetype")[0].options[0].selected = false;
+			document.getElementsByName("housetype")[0].options[1].selected =true;
+			//装修情况
+			document.getElementsByName("housefit")[0].options[0].selected = false;
+			document.getElementsByName("housefit")[0].options[4].selected =true;
+			//房间朝向
+			document.getElementsByName("roomorient")[0].options[0].selected = false;
+			document.getElementsByName("roomorient")[0].options[9].selected =true;
+			//付款方式
+			document.getElementsByName("paymode")[0].options[0].selected = false;
+			document.getElementsByName("paymode")[0].options[5].selected =true;
+			//全选
+			document.getElementsByName("fitment[]")[0].click();
+			//选择模板
+			document.getElementsByClassName("use-tpl ui-button ui-button-blue ui-button-micro")[0].click();
+			setTimeout(function(){
+			document.getElementsByName("roomtemplate")[0].click();
+			},1000)
+			document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
+
+
 
 		''' % (returndata.houseinfo.encode("utf-8").split("室")[0],returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0],
 				returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0],returndata.housecf.encode("utf-8").split('m²')[0],
