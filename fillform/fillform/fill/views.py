@@ -297,40 +297,40 @@ document.getElementsByClassName("btn")[i].click()
 ''' 
 		f.write(selectpic)
 		#拿取小区地址自动填入
-		idjavascript = '''
-function myTimer() {
-var xmlhttp;
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+# 		idjavascript = '''
+# function myTimer() {
+# var xmlhttp;
+# xmlhttp = new XMLHttpRequest();
+# xmlhttp.onreadystatechange = function() {
+#     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         
-        console.log(JSON.parse(xmlhttp.responseText))
-        document.getElementById("district").value = JSON.parse(xmlhttp.responseText).district
-        document.getElementById("street").value = JSON.parse(xmlhttp.responseText).streetname
-        document.getElementById("blockaddress").value = JSON.parse(xmlhttp.responseText).address
-        document.getElementById("blockshowname").value=JSON.parse(xmlhttp.responseText).blockname
-        window.scroll(100,1650);
-    } 
-}
-xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=%s" , true);
+#         console.log(JSON.parse(xmlhttp.responseText))
+#         document.getElementById("district").value = JSON.parse(xmlhttp.responseText).district
+#         document.getElementById("street").value = JSON.parse(xmlhttp.responseText).streetname
+#         document.getElementById("blockaddress").value = JSON.parse(xmlhttp.responseText).address
+#         document.getElementById("blockshowname").value=JSON.parse(xmlhttp.responseText).blockname
+#         window.scroll(100,1650);
+#     } 
+# }
+# xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=%s" , true);
 
-xmlhttp.send();
+# xmlhttp.send();
 
-};
-myTimer();\n
+# };
+# myTimer();\n
 
-document.onkeydown=function(event){
-  var e = event || window.event || arguments.callee.caller.arguments[0];
+# document.onkeydown=function(event){
+#   var e = event || window.event || arguments.callee.caller.arguments[0];
             
-   // if(e && e.keyCode==13){ // enter 键
-   if(e && e.keyCode==32){ // space 键
-       document.getElementById("jsBtnSubmit_rent").click();
-  }
-}; 
+#    // if(e && e.keyCode==13){ // enter 键
+#    if(e && e.keyCode==32){ // space 键
+#        document.getElementById("jsBtnSubmit_rent").click();
+#   }
+# }; 
 
-		''' % (str(getid((returndata.tier).encode("utf-8"))))
+# 		''' % (str(getid((returndata.tier).encode("utf-8"))))
 
-		f.write(idjavascript)
+# 		f.write(idjavascript)
 		
 		# content = '''
 		# 嗨住的优质房源
@@ -384,6 +384,11 @@ def uploadpic(request):
 
 def writeAnjukeDate(request,datanum):
 	returndata = Person.objects.all()[int(datanum)]
+
+	housenum = len(Person.objects.all())
+	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8"),"housenum":str(housenum)}
+
+
 	readscriptpath =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\\fillAnjuke\\readscript.js"
 
 	with open(readscriptpath,"w+") as f:
@@ -409,5 +414,27 @@ def writeAnjukeDate(request,datanum):
 			f.write('document.getElementsByName("allFloor")[0].value = %s\n' % "7")
 		else:
 			f.write('document.getElementsByName("allFloor")[0].value = %s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
+
+		#每次更换标题信息
+		if int(datanum) - othervarible.FIRSTNUM < 0:
+			othervarible.FIRSTNUM = othervarible.FIRSTNUM - 3
 			
+		print othervarible.FIRSTNUM
+		if int(datanum)-othervarible.FIRSTNUM== 0:
+			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
+		elif int(datanum)-othervarible.FIRSTNUM== 1:
+			title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
+		elif int(datanum)-othervarible.FIRSTNUM== 2:
+			title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
+			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
+			
+	response = HttpResponse(json.dumps(returntier))
+	response["Access-Control-Allow-Origin"] = "*"
+	response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+	response["Access-Control-Max-Age"] = "1000"
+	response["Access-Control-Allow-Headers"] = "*"
+	return response
 
