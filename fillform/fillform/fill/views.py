@@ -421,43 +421,72 @@ def writeAnjukeDate(request,datanum):
 			},100)
 			
 			function showHint() {
-			    var xmlhttp;
+						    var xmlhttp;
 
-			    if (window.XMLHttpRequest) {
-			        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-			        xmlhttp = new XMLHttpRequest();
-			    } else {
-			        // IE6, IE5 浏览器执行代码
-			        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			    }
-			    xmlhttp.onreadystatechange = function() {
-			        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			            console.log(JSON.parse(xmlhttp.responseText)["data"][0]["name"]);
-			            document.getElementsByName("communityAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][0]["name"];
+						    if (window.XMLHttpRequest) {
+						        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+						        xmlhttp = new XMLHttpRequest();
+						    } else {
+						        // IE6, IE5 浏览器执行代码
+						        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+						    }
+						    xmlhttp.onreadystatechange = function() {
+						   			        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						   			            console.log(JSON.parse(xmlhttp.responseText)["data"][0]["name"]);
+						   			            document.getElementsByName("communityAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][0]["name"];
 
-			            setTimeout(function(){for (var i = document.getElementsByName("zoneAJK")[0].options.length - 1; i >= 0; i--) {
-			            			                if (document.getElementsByName("zoneAJK")[0].options[i].text===JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]){
-			            			                    document.getElementsByName("zoneAJK")[0].options[0].selected = false;
-			            			                    document.getElementsByName("zoneAJK")[0].options[i].selected = true;
-			            			                }
-			            			            }},1000)
+						   			            	for (var i = document.getElementsByName("zoneAJK")[0].options.length - 1; i >= 0; i--) {
+						   			            			                if (document.getElementsByName("zoneAJK")[0].options[i].text===JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]){
+						   			            			                    document.getElementsByName("zoneAJK")[0].options[0].selected = false;
+						   			            			                    document.getElementsByName("zoneAJK")[0].options[i].selected = true;
+						   			            			                    console.log(document.getElementsByName("zoneAJK")[0].options[i]);
+						   			            			                    // showHint1(document.getElementsByName("zoneAJK")[0].options[i].value,JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]);
+						   			            			                }
+						   			            			            }
 
-			            for (var i = document.getElementsByName("blockAJK")[0].options.length - 1; i >= 0; i--) {
-			                if (document.getElementsByName("blockAJK")[0].options[i].text==JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]){
-			                    document.getElementsByName("blockAJK")[0].options[0].selected = false;
-			                    document.getElementsByName("blockAJK")[0].options[i].selected = true;
-			                }
-			            };
-			            document.getElementsByName("addressAJK")[0].value =JSON.parse(xmlhttp.responseText)["data"][0]["address"];
+						   			           	document.getElementsByClassName("ui-select-label")[0].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["area_string"];
+						   			           
+						   			            document.getElementsByClassName("ui-select-label")[1].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"];
 
-			        }
-			    }
-			    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=%s", true);
-			    xmlhttp.send();
-			    
-			}
+						   			            document.getElementsByName("addressAJK")[0].value =JSON.parse(xmlhttp.responseText)["data"][0]["address"];
 
-			showHint();
+						   			            document.getElementById("ajk_community_address").innerText = "地址："+ JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]+" "
+						   			            +JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]+" "+JSON.parse(xmlhttp.responseText)["data"][0]["address"]
+
+						   			        }
+						   			    }
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=%s", true);
+						    xmlhttp.send();
+						    
+						}
+
+						function showHint1(e,f) {
+						    var xmlhttp;
+
+						    if (window.XMLHttpRequest) {
+						        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+						        xmlhttp = new XMLHttpRequest();
+						    } else {
+						        // IE6, IE5 浏览器执行代码
+						        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+						    }
+						    xmlhttp.onreadystatechange = function() {
+						   			        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						   			            for (var i = JSON.parse(xmlhttp.responseText)["data"].length - 1; i >= 0; i--) {
+						   			                if (JSON.parse(xmlhttp.responseText)["data"][i]["typeName"]==f){
+						   			                    document.getElementsByName("blockAJK")[0].options[0].selected = false;
+						   			                    document.getElementsByName("blockAJK")[0].options[i].selected = true;
+								   			            console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeName"])
+								   			            console.log(document.getElementsByName("blockAJK")[0].options[i])
+						   			                }
+						   			            }
+						   			        }
+						   			    }
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/house/hz_house?act=getBlocks&districtId="+e, true);
+						    xmlhttp.send();
+						    
+						}
+						showHint();
 
 
 		''' % (returndata.houseinfo.encode("utf-8").split("室")[0],returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0],
