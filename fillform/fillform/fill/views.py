@@ -430,8 +430,8 @@ def writeAnjukeDate(request,datanum):
 			document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
 			},100)
 
+			
 			document.getElementsByName("communityAJK")[0].value = '%s';
-
 
 			function showHint() {
 						    var xmlhttp;
@@ -453,22 +453,23 @@ def writeAnjukeDate(request,datanum):
 						   			            			                    document.getElementsByName("zoneAJK")[0].options[0].selected = false;
 						   			            			                    document.getElementsByName("zoneAJK")[0].options[i].selected = true;
 						   			            			                    console.log(document.getElementsByName("zoneAJK")[0].options[i]);
-						   			            			                    // showHint1(document.getElementsByName("zoneAJK")[0].options[i].value,JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]);
+						   			            			                    console.log(document.getElementsByName("zoneAJK")[0].value);
+						   			            			                    showHint1(document.getElementsByName("zoneAJK")[0].value,JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]);
 						   			            			                }
 						   			            			            }
 
-						   			           	document.getElementsByClassName("ui-select-label")[0].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["area_string"];
+						   			           	// document.getElementsByClassName("ui-select-label")[0].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["area_string"];
 						   			           
-						   			            document.getElementsByClassName("ui-select-label")[1].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"];
+						   			            // document.getElementsByClassName("ui-select-label")[1].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"];
 
 						   			            document.getElementsByName("addressAJK")[0].value =JSON.parse(xmlhttp.responseText)["data"][0]["address"];
 
-						   			            document.getElementById("ajk_community_address").innerText = "地址："+ JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]+" "
-						   			            +JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]+" "+JSON.parse(xmlhttp.responseText)["data"][0]["address"]
+						   			            // document.getElementById("ajk_community_address").innerText = "地址："+ JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]+" "
+						   			            // +JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]+" "+JSON.parse(xmlhttp.responseText)["data"][0]["address"]
 
 						   			        }
 						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=", true);
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=%s", true);
 						    xmlhttp.send();
 						    
 						}
@@ -487,10 +488,12 @@ def writeAnjukeDate(request,datanum):
 						   			        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						   			            for (var i = JSON.parse(xmlhttp.responseText)["data"].length - 1; i >= 0; i--) {
 						   			                if (JSON.parse(xmlhttp.responseText)["data"][i]["typeName"]==f){
-						   			                    document.getElementsByName("blockAJK")[0].options[0].selected = false;
-						   			                    document.getElementsByName("blockAJK")[0].options[i].selected = true;
+						   			                    // document.getElementsByName("blockAJK")[0].options[0].selected = false;
+						   			                    // document.getElementsByName("blockAJK")[0].options[i].selected = true;
 								   			            console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeName"])
-								   			            console.log(document.getElementsByName("blockAJK")[0].options[i])
+								   			            console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeId"])
+								   			            document.getElementsByName("blockAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][i]["typeId"]
+								   			            // console.log(document.getElementsByName("blockAJK")[0].options[i])
 						   			                }
 						   			            }
 						   			        }
@@ -499,12 +502,13 @@ def writeAnjukeDate(request,datanum):
 						    xmlhttp.send();
 						    
 						}
-						//showHint();
+						showHint();
+
 
 
 		''' % (returndata.houseinfo.encode("utf-8").split("室")[0],returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0],
 				returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0],returndata.housecf.encode("utf-8").split('m²')[0],
-				returndata.rentfl.encode("utf-8"),(returndata.tier).encode("utf-8")
+				returndata.rentfl.encode("utf-8"),(returndata.tier).encode("utf-8"),(returndata.tier).encode("utf-8")
 			)
 		f.write(fillAnjuke)
 
