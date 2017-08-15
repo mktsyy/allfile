@@ -1,8 +1,8 @@
 {
-  "name": "拿取南京房间数据",
+  "name": "拿取上海房间数据",
   "manifest_version": 2,
   "version": "1.0",
-  "description": "拿取南京房间数据",
+  "description": "拿取上海房间数据",
   "browser_action": {
     "default_icon": "1.png"
   },

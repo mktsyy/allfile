@@ -29,6 +29,7 @@ def fill(request):
 	f = request.GET.get('f',0)
 	g = request.GET.get('g',0)
 	h = request.GET.get('h',0)
+	z = request.GET.get('z',0)
 
 
 	if a:
@@ -186,6 +187,11 @@ def fill(request):
 
 	if h:
 		Person.objects.all().delete();
+
+	if z:
+		
+		return render(request,"23.html") 
+	
 		
 	k = ""
 	data = Person.objects.all()
@@ -210,6 +216,10 @@ def getid(a):
 				break
 	return id
 
+def temptestselect(request):
+	testselect = request.GET.get("test")
+	# print str(testselect)
+	return HttpResponse (str(testselect))
 
 
 def writedata(request,datanum):
@@ -384,7 +394,7 @@ def uploadpic(request):
 
 def writeAnjukeDate(request,datanum):
 	returndata = Person.objects.all()[int(datanum)]
-
+	print returndata.tier
 	housenum = len(Person.objects.all())
 	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8"),"housenum":str(housenum)}
 
@@ -419,7 +429,10 @@ def writeAnjukeDate(request,datanum):
 			document.getElementsByName("roomtemplate")[0].click();
 			document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
 			},100)
-			
+
+			document.getElementsByName("communityAJK")[0].value = '%s';
+
+
 			function showHint() {
 						    var xmlhttp;
 
@@ -455,7 +468,7 @@ def writeAnjukeDate(request,datanum):
 
 						   			        }
 						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=%s", true);
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=", true);
 						    xmlhttp.send();
 						    
 						}
@@ -486,7 +499,7 @@ def writeAnjukeDate(request,datanum):
 						    xmlhttp.send();
 						    
 						}
-						showHint();
+						//showHint();
 
 
 		''' % (returndata.houseinfo.encode("utf-8").split("室")[0],returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0],

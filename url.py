@@ -31,7 +31,12 @@ with open("party.txt",'r') as f:
 		g.write(htmlhead)
 
 		for k in f.readlines():
-			i = str(llll)+'.<A HREF="http://waf.hizhu.com/shanghai/roomlist.html?come=zdy&key_self=1&key=%s#c=sh&logicSort=2&max=999999&min=0&housecount=71" target="_blank" >%s</A>' % (k,k)
+
+			##上海
+			# i = str(llll)+'.<A HREF="http://waf.hizhu.com/shanghai/roomlist.html?come=zdy&key_self=1&key=%s#c=sh&logicSort=2&max=999999&min=0&housecount=71" target="_blank" >%s</A>' % (k,k)
+
+			##南京
+			i = str(llll)+'.<A HREF="http://waf.hizhu.com/nanjing/roomlist.html?come=zdy&key_self=1&key=%s#c=nj&logicSort=2&max=999999&min=0&housecount=71" target="_blank" >%s</A>' % (k,k)
 			if llll % 10 == 0:
 				button = '<button onclick="openurl(%s)">打开</button>' % str(llll)
 				g.write(i+button+"<br>"+"\n")	

@@ -1,8 +1,8 @@
 {
-  "name": "房间列表排序与监听关闭",
+  "name": "南京房间列表排序与监听关闭",
   "manifest_version": 2,
   "version": "1.0",
-  "description": "房间列表排序与监听关闭",
+  "description": "南京房间列表排序与监听关闭",
   "browser_action": {
     "default_icon": "1.png"
   },
