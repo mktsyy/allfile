@@ -10,7 +10,7 @@
  "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["http://vip.anjuke.com/house/publish/rent/?from=manage"],
+      "matches": ["http://vip.anjuke.com/house/publish/rent/?*"],
       "js": ["readscript.js"]
     }
   ]

@@ -24,10 +24,18 @@
 // setInterval(function(){
 //     document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
 // },500)
-
+setInterval(function(){
 //小区名字
 var tier = document.getElementById("mess").childNodes[0].innerHTML.split("·")[1].split("&nbsp;")[1];
 document.getElementsByTagName("TITLE")[0].text = tier;
+
+// for (var i = document.getElementsByClassName("house_mes")[0].childNodes.length - 1; i >= 0; i--) {
+//     var part = escape(document.getElementsByClassName("house_mes")[0].childNodes[i].innerText);
+//     var c = escape("小区")
+//     if (part.indexOf(c) >= 0) {
+//         var tier = unescape(part).split("小区")[1];
+//     }
+// }
 
 //户型
 // var houseinfo = document.getElementsByClassName("house_mes")[0].childNodes[2].childNodes[1].innerHTML;
@@ -83,8 +91,13 @@ function showHint() {
 
 showHint();
 
+
+
 //自动关闭窗口
 setTimeout(function() {
     window.close();
 }, 1000)
 // alert("done!");
+
+}, 5000)
+

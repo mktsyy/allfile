@@ -286,14 +286,24 @@ document.getElementsByName("equipment[]")[i].checked=true
 			othervarible.FIRSTNUM = othervarible.FIRSTNUM - 3
 			
 		print othervarible.FIRSTNUM
+		# if int(datanum)-othervarible.FIRSTNUM== 0:
+		# 	title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		# elif int(datanum)-othervarible.FIRSTNUM== 1:
+		# 	title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		# elif int(datanum)-othervarible.FIRSTNUM== 2:
+		# 	title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		# 	othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 		if int(datanum)-othervarible.FIRSTNUM== 0:
-			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+			title = (returndata.tier).encode("utf-8")+"精装现房，格局方正，男女不限，随时住"
 			f.write('document.getElementById("address").value="%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 1:
-			title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+			title = (returndata.tier).encode("utf-8")+"地铁沿线，南北通透，性价比高，采光好"
 			f.write('document.getElementById("address").value="%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 2:
-			title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+			title = (returndata.tier).encode("utf-8")+"干净整洁，正规成熟，随时看房，无中介"
 			f.write('document.getElementById("address").value="%s"\n' % title)
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
@@ -403,11 +413,14 @@ def writeAnjukeDate(request,datanum):
 
 	with open(readscriptpath,"w+") as f:
 		fillAnjuke = '''
+			
+
 			document.getElementsByName("room")[0].value = %s ;
 			document.getElementsByName("hall")[0].value = %s ;
 			document.getElementsByName("bathroom")[0].value = %s ;
 			document.getElementsByName("roomarea")[0].value = %s ;
 			document.getElementsByName("rentprice")[0].value = %s ;
+
 			
 			//房屋类型
 			document.getElementsByName("housetype")[0].options[0].selected = false;
@@ -502,7 +515,7 @@ def writeAnjukeDate(request,datanum):
 						    xmlhttp.send();
 						    
 						}
-						showHint();
+						//showHint();
 
 
 
@@ -528,15 +541,19 @@ def writeAnjukeDate(request,datanum):
 			
 		print othervarible.FIRSTNUM
 		if int(datanum)-othervarible.FIRSTNUM== 0:
-			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+			title = (returndata.tier).encode("utf-8")+"精装现房，格局方正，男女不限，随时住"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 1:
-			title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+			title = (returndata.tier).encode("utf-8")+"地铁沿线，南北通透，性价比高，采光好"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 2:
-			title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+			title = (returndata.tier).encode("utf-8")+"干净整洁，正规成熟，随时看房，无中介"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
+
+		#//自动选择安居库平台
+		
+		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();')
 			
 	response = HttpResponse(json.dumps(returntier))
 	response["Access-Control-Allow-Origin"] = "*"
