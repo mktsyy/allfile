@@ -1,0 +1,12 @@
+Ticket Id - SUW-261-52912
+
+精装现房，格局方正，男女不限，随时住
+地铁沿线，南北通透，性价比高，采光好
+干净整洁，正规成熟，随时看房，无中介
+
+
+setInterval(function(){myTimer()},1000);
+function myTimer(){
+    
+ document.getElementsByClassName("reload-link")[1].click();
+}
