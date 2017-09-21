@@ -400,7 +400,18 @@ def uploadpic(request):
 			img=Image.open(photo)
 			img.save('D:\codes\\'+str(photo))
 		return HttpResponse ("ok")
-	return render(request,"upload.html")
+	obj = render(request,"upload.html")
+
+	##放入cookie
+	# obj.set_cookie("upload","syy")
+
+	##检查cookie,如果cookie不正确，禁止登录
+	upload = request.COOKIES.get('upload')
+	# print  upload
+	if upload != "yy":
+		return HttpResponse ("None")
+
+	return obj
 
 def writeAnjukeDate(request,datanum):
 	returndata = Person.objects.all()[int(datanum)]
