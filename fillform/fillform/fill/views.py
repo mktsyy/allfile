@@ -406,10 +406,27 @@ def uploadpic(request):
 	# obj.set_cookie("upload","syy")
 
 	##检查cookie,如果cookie不正确，禁止登录
-	upload = request.COOKIES.get('upload')
-	# print  upload
-	if upload != "yy":
-		return HttpResponse ("None")
+	# upload = request.COOKIES.get('upload')
+	# # print  upload
+	# if upload != "yy":
+	# 	return HttpResponse ("None")
+
+	##设置session
+	# request.session['upload'] = "syy"
+
+	##session判断登录
+	# upload = request.session.get('upload')
+	# if upload != "yy":
+	# 	return HttpResponse ("None")
+
+	##查询session的key,value
+	from django.contrib.sessions.models import Session
+
+	##session_key 这个可以从客户端浏览器或是服务器数据库
+	session_key = 'ys3hvulqmmg559yxesqjcz0a65n72um3'
+
+	session = Session.objects.get(session_key=session_key)
+	print  session.get_decoded()
 
 	return obj
 
