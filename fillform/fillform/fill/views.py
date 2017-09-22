@@ -423,7 +423,7 @@ def uploadpic(request):
 	from django.contrib.sessions.models import Session
 
 	##session_key 这个可以从客户端浏览器或是服务器数据库
-	session_key = 'ys3hvulqmmg559yxesqjcz0a65n72um3'
+	session_key = '8u627zl56v35kky8exa3pplhruci01f2'
 
 	session = Session.objects.get(session_key=session_key)
 	print  session.get_decoded()
