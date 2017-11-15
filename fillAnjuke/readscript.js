@@ -1,11 +1,11 @@
 
 			
 
-			document.getElementsByName("room")[0].value = 3 ;
+			document.getElementsByName("room")[0].value = 4 ;
 			document.getElementsByName("hall")[0].value = 1 ;
 			document.getElementsByName("bathroom")[0].value = 1 ;
-			document.getElementsByName("roomarea")[0].value = 10 ;
-			document.getElementsByName("rentprice")[0].value = 600 ;
+			document.getElementsByName("roomarea")[0].value = 12 ;
+			document.getElementsByName("rentprice")[0].value = 500 ;
 
 			
 			//房屋类型
@@ -30,7 +30,7 @@
 			},100)
 
 			
-			document.getElementsByName("communityAJK")[0].value = '太平花苑.北苑';
+			document.getElementsByName("communityAJK")[0].value = '金穗花园';
 
 			function showHint() {
 						    var xmlhttp;
@@ -68,7 +68,7 @@
 
 						   			        }
 						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=太平花苑.北苑", true);
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=金穗花园", true);
 						    xmlhttp.send();
 						    
 						}
@@ -105,6 +105,7 @@
 
 
 
-		document.getElementsByName("floor")[0].value = 8
-document.getElementsByName("allFloor")[0].value = 18
+		document.getElementsByName("floor")[0].value = 25
+document.getElementsByName("allFloor")[0].value = 34
+document.getElementsByName("title")[0].value = "金穗花园干净整洁，正规成熟，随时看房，无中介"
 document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();

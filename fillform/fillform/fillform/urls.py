@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^uploadpic', views.uploadpic),
     url(r'^writeAnjukeDate/(\d+)/', views.writeAnjukeDate),
     url(r'^temptestselect/', views.temptestselect),
+    url(r'^ftp/', views.ftp),
 ]

@@ -400,7 +400,35 @@ def uploadpic(request):
 			img=Image.open(photo)
 			img.save('D:\codes\\'+str(photo))
 		return HttpResponse ("ok")
-	return render(request,"upload.html")
+	obj = render(request,"upload.html")
+
+	##放入cookie
+	# obj.set_cookie("upload","syy")
+
+	##检查cookie,如果cookie不正确，禁止登录
+	# upload = request.COOKIES.get('upload')
+	# # print  upload
+	# if upload != "yy":
+	# 	return HttpResponse ("None")
+
+	##设置session
+	# request.session['upload'] = "syy"
+
+	##session判断登录
+	# upload = request.session.get('upload')
+	# if upload != "yy":
+	# 	return HttpResponse ("None")
+
+	##查询session的key,value
+	from django.contrib.sessions.models import Session
+
+	##session_key 这个可以从客户端浏览器或是服务器数据库
+	session_key = '8u627zl56v35kky8exa3pplhruci01f2'
+
+	session = Session.objects.get(session_key=session_key)
+	print  session.get_decoded()
+
+	return obj
 
 def writeAnjukeDate(request,datanum):
 	returndata = Person.objects.all()[int(datanum)]
@@ -562,3 +590,35 @@ def writeAnjukeDate(request,datanum):
 	response["Access-Control-Allow-Headers"] = "*"
 	return response
 
+def ftp(request):
+	testselect = request.GET.get("test")
+	print testselect
+	from pyftpdlib.authorizers import DummyAuthorizer
+	from pyftpdlib.handlers import FTPHandler
+	from pyftpdlib.servers import FTPServer
+
+	authorizer = DummyAuthorizer()
+
+	authorizer.add_user('root', 'admin', '.', perm='elradfmw')
+
+	authorizer.add_anonymous('.')
+
+	handler = FTPHandler
+	handler.authorizer = authorizer
+
+
+	if testselect == "start":
+
+		server = FTPServer(('10.137.7.124', 21), handler)
+		server.serve_forever()
+		# return HttpResponse(str(testselect))
+
+	elif testselect == "stop":
+		server = FTPServer(('10.137.7.124', 21), handler)
+		server.close_all()
+		# print "stop"
+		print "now-stop"
+
+
+	# print str(testselect)
+	return render(request, 'ftp.html')
