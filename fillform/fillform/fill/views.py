@@ -590,3 +590,35 @@ def writeAnjukeDate(request,datanum):
 	response["Access-Control-Allow-Headers"] = "*"
 	return response
 
+def ftp(request):
+	testselect = request.GET.get("test")
+	print testselect
+	from pyftpdlib.authorizers import DummyAuthorizer
+	from pyftpdlib.handlers import FTPHandler
+	from pyftpdlib.servers import FTPServer
+
+	authorizer = DummyAuthorizer()
+
+	authorizer.add_user('root', 'admin', '.', perm='elradfmw')
+
+	authorizer.add_anonymous('.')
+
+	handler = FTPHandler
+	handler.authorizer = authorizer
+
+
+	if testselect == "start":
+
+		server = FTPServer(('10.137.7.124', 21), handler)
+		server.serve_forever()
+		# return HttpResponse(str(testselect))
+
+	elif testselect == "stop":
+		server = FTPServer(('10.137.7.124', 21), handler)
+		server.close_all()
+		# print "stop"
+		print "now-stop"
+
+
+	# print str(testselect)
+	return render(request, 'ftp.html')
