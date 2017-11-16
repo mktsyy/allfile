@@ -461,9 +461,13 @@ def writeAnjukeDate(request,datanum):
 			document.getElementsByName("roomorient")[0].options[9].selected =true;
 			//付款方式
 			document.getElementsByName("paymode")[0].options[0].selected = false;
-			document.getElementsByName("paymode")[0].options[5].selected =true;
+			document.getElementsByName("paymode")[0].options[1].selected =true;
 			//全选
-			document.getElementsByName("fitment[]")[0].click();
+			for (var i = document.getElementsByName("fitment[]").length - 1; i >= 0; i--) {
+				document.getElementsByName("fitment[]")[i].click();
+			};
+			//选择无中介费
+			document.getElementsByName("noCommission")[0].click();
 			//选择模板
 			document.getElementsByClassName("use-tpl ui-button ui-button-blue ui-button-micro")[0].click();
 			setTimeout(function(){
