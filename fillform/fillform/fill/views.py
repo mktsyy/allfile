@@ -546,7 +546,7 @@ def writeAnjukeDate(request,datanum):
 						    xmlhttp.send();
 						    
 						}
-						//showHint();
+						showHint();
 
 
 
@@ -588,13 +588,18 @@ def writeAnjukeDate(request,datanum):
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
 		#//选择无中介费
-		f.write('document.getElementsByName("noCommission")[0].click();\n')
+		f.write('if (document.getElementsByName("noCommission")[0].checked ==false)\n{document.getElementsByName("noCommission")[0].click()};\n')
 
 		#//自动选择电梯
 		f.write('document.getElementsByName("lift")[0].checked = true;\n')
-		
+
 		#//自动选择安居库平台
-		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
+		# f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
+
+		#//刷新一次页面(未完成)
+		freshPageOnce = '''  var isFirst = setTimeout(function(){history.go(0)},2000); 
+   			 		 window.clearTimeout(isFirst);//去掉定时器 \n'''
+		f.write(freshPageOnce)
 
 			
 	response = HttpResponse(json.dumps(returntier))
