@@ -466,8 +466,7 @@ def writeAnjukeDate(request,datanum):
 			for (var i = document.getElementsByName("fitment[]").length - 1; i >= 0; i--) {
 				document.getElementsByName("fitment[]")[i].click();
 			};
-			//选择无中介费
-			document.getElementsByName("noCommission")[0].click();
+			
 			//选择模板
 			document.getElementsByClassName("use-tpl ui-button ui-button-blue ui-button-micro")[0].click();
 			setTimeout(function(){
@@ -557,6 +556,11 @@ def writeAnjukeDate(request,datanum):
 			)
 		f.write(fillAnjuke)
 
+		if int(returndata.houseinfo.encode("utf-8").split("室")[0]) > 3:
+			f.write('document.getElementsByName("flatshare")[0].value = 3;\n')
+		else:
+			f.write('document.getElementsByName("flatshare")[0].value = %s;\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
+
 		if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
 			f.write('document.getElementsByName("floor")[0].value = %s\n' % "3")
 		else:
@@ -583,9 +587,15 @@ def writeAnjukeDate(request,datanum):
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
-		#//自动选择安居库平台
+		#//选择无中介费
+		f.write('document.getElementsByName("noCommission")[0].click();\n')
+
+		#//自动选择电梯
+		f.write('document.getElementsByName("lift")[0].checked = true;\n')
 		
-		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();')
+		#//自动选择安居库平台
+		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
+
 			
 	response = HttpResponse(json.dumps(returntier))
 	response["Access-Control-Allow-Origin"] = "*"

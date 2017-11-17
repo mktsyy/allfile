@@ -26,7 +26,7 @@
 // },500)
 
 //小区名字
-var tier = document.getElementById("mess").childNodes[0].innerHTML.split("·")[1].split("&nbsp;")[1];
+var tier = document.getElementById("mess").childNodes[1].innerHTML.split("·")[1].split("&nbsp;")[1];
 document.getElementsByTagName("TITLE")[0].text = tier;
 
 //户型
@@ -48,7 +48,7 @@ for (var i = document.getElementsByClassName("house_mes")[0].childNodes.length -
     var part = escape(document.getElementsByClassName("house_mes")[0].childNodes[i].innerText);
     var c = escape("楼层")
     if (part.indexOf(c) >= 0) {
-        var housecf5 = document.getElementsByClassName("house_mes")[0].childNodes[1].childNodes[1].innerHTML;
+        var housecf5 = document.getElementsByClassName("house_mes")[0].childNodes[3].childNodes[1].innerHTML;
         break;
         console.log(housecf5);
     } else {
