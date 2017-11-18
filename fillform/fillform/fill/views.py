@@ -466,8 +466,7 @@ def writeAnjukeDate(request,datanum):
 			for (var i = document.getElementsByName("fitment[]").length - 1; i >= 0; i--) {
 				document.getElementsByName("fitment[]")[i].click();
 			};
-			//选择无中介费
-			document.getElementsByName("noCommission")[0].click();
+			
 			//选择模板
 			document.getElementsByClassName("use-tpl ui-button ui-button-blue ui-button-micro")[0].click();
 			setTimeout(function(){
@@ -547,7 +546,7 @@ def writeAnjukeDate(request,datanum):
 						    xmlhttp.send();
 						    
 						}
-						//showHint();
+						showHint();
 
 
 
@@ -556,6 +555,11 @@ def writeAnjukeDate(request,datanum):
 				returndata.rentfl.encode("utf-8"),(returndata.tier).encode("utf-8"),(returndata.tier).encode("utf-8")
 			)
 		f.write(fillAnjuke)
+
+		if int(returndata.houseinfo.encode("utf-8").split("室")[0]) > 3:
+			f.write('document.getElementsByName("flatshare")[0].value = 3;\n')
+		else:
+			f.write('document.getElementsByName("flatshare")[0].value = %s;\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
 
 		if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
 			f.write('document.getElementsByName("floor")[0].value = %s\n' % "3")
@@ -583,9 +587,20 @@ def writeAnjukeDate(request,datanum):
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
+		#//选择无中介费
+		f.write('if (document.getElementsByName("noCommission")[0].checked ==false)\n{document.getElementsByName("noCommission")[0].click()};\n')
+
+		#//自动选择电梯
+		f.write('document.getElementsByName("lift")[0].checked = true;\n')
+
 		#//自动选择安居库平台
-		
-		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();')
+		# f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
+
+		#//刷新一次页面(未完成)
+		freshPageOnce = '''  var isFirst = setTimeout(function(){history.go(0)},2000); 
+   			 		 window.clearTimeout(isFirst);//去掉定时器 \n'''
+		f.write(freshPageOnce)
+
 			
 	response = HttpResponse(json.dumps(returntier))
 	response["Access-Control-Allow-Origin"] = "*"

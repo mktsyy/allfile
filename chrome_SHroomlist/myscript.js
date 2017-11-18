@@ -6,17 +6,17 @@
 
 //在同一窗口打开房源信息
 setInterval(function(){
-    document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
+    document.getElementsByClassName("house_title")[0].childNodes[1].setAttribute("target", "");
 },500)
 
 //自动价格排序
 setTimeout(function() {
-    document.getElementById("price_sort").click();
+    // document.getElementById("price_sort").click();
     document.getElementsByTagName("TITLE")[0].text = document.getElementsByClassName("house_title")[0].innerText.split("·")[1];
     
 
     setInterval(function(){
-        document.getElementsByClassName("house_title")[0].childNodes[0].click();
+        document.getElementsByClassName("house_title")[0].childNodes[1].click();
     },2000)
     //点击选择链接，窗口自动关闭（自动点击不成功）
     // document.getElementsByClassName("house_title")[0].childNodes[0].onclick = function() {

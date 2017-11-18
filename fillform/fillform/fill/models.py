@@ -10,6 +10,8 @@ class Person(models.Model):
     housecf = models.CharField(max_length=30,null=True)
     rentfl = models.CharField(max_length=30,null=True)
     housecf5 = models.CharField(max_length=30,null=True)
+    def __unicode__(self):# 在Python3中用 __str__ 代替 __unicode__
+            return self.tier
 
 class Information(models.Model):
     address = models.CharField(max_length=30,null=True)
