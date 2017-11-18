@@ -596,7 +596,7 @@ def writeAnjukeDate(request,datanum):
 		#//自动选择安居库平台
 		# f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
 
-		#//刷新一次页面(未完成)
+		#//刷新一次页面(未完成~~)
 		freshPageOnce = '''  var isFirst = setTimeout(function(){history.go(0)},2000); 
    			 		 window.clearTimeout(isFirst);//去掉定时器 \n'''
 		f.write(freshPageOnce)
