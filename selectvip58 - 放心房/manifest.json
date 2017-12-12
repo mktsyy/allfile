@@ -1,8 +1,8 @@
 {
-  "name": "安居客填表",
+  "name": "58-放心房",
   "manifest_version": 2,
   "version": "1.0",
-  "description": "安居客填表",
+  "description": "58-放心房",
   "browser_action": {
     "default_icon": "2.png"
 
@@ -10,7 +10,7 @@
  "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["http://vip.58ganji.com/house/publish/rent/?*"],
+      "matches": ["http://vip.58ganji.com/*"],
       "js": ["readscript.js"]
     }
   ]
