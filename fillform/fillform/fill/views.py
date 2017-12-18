@@ -455,7 +455,7 @@ def writeAnjukeDate(request,datanum):
 			document.getElementsByName("housetype")[0].options[1].selected =true;
 			//装修情况
 			document.getElementsByName("housefit")[0].options[0].selected = false;
-			document.getElementsByName("housefit")[0].options[4].selected =true;
+			document.getElementsByName("housefit")[0].options[3].selected =true;
 			//房间朝向
 			document.getElementsByName("roomorient")[0].options[0].selected = false;
 			document.getElementsByName("roomorient")[0].options[9].selected =true;
@@ -475,7 +475,7 @@ def writeAnjukeDate(request,datanum):
 			},100)
 
 			
-			document.getElementsByName("communityAJK")[0].value = '%s';
+			//document.getElementsByName("communityAJK")[0].value = '%s';
 
 			function showHint() {
 						    var xmlhttp;
