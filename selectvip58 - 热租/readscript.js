@@ -4,9 +4,11 @@ for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
     if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[11].childNodes[5].attributes[1].value == 'opt-link batchproms') {
         // document.getElementsByClassName("ck")[i].checked = true;
         if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1].innerHTML != "上海") {
+        if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1].innerHTML != "南京") {
         document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[11].childNodes[5].click();
         document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
         document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
+            }
         };
 
     }

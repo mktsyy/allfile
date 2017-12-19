@@ -1,11 +1,11 @@
 
 			
 
-			document.getElementsByName("room")[0].value = 4 ;
+			document.getElementsByName("room")[0].value = 3 ;
 			document.getElementsByName("hall")[0].value = 1 ;
 			document.getElementsByName("bathroom")[0].value = 1 ;
 			document.getElementsByName("roomarea")[0].value = 12 ;
-			document.getElementsByName("rentprice")[0].value = 500 ;
+			document.getElementsByName("rentprice")[0].value = 1200 ;
 
 			
 			//房屋类型
@@ -19,9 +19,12 @@
 			document.getElementsByName("roomorient")[0].options[9].selected =true;
 			//付款方式
 			document.getElementsByName("paymode")[0].options[0].selected = false;
-			document.getElementsByName("paymode")[0].options[5].selected =true;
+			document.getElementsByName("paymode")[0].options[1].selected =true;
 			//全选
-			document.getElementsByName("fitment[]")[0].click();
+			for (var i = document.getElementsByName("fitment[]").length - 1; i >= 0; i--) {
+				document.getElementsByName("fitment[]")[i].click();
+			};
+			
 			//选择模板
 			document.getElementsByClassName("use-tpl ui-button ui-button-blue ui-button-micro")[0].click();
 			setTimeout(function(){
@@ -30,7 +33,7 @@
 			},100)
 
 			
-			document.getElementsByName("communityAJK")[0].value = '金穗花园';
+			document.getElementsByName("communityAJK")[0].value = '双桥铁路小区.北二区';
 
 			function showHint() {
 						    var xmlhttp;
@@ -68,7 +71,7 @@
 
 						   			        }
 						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=金穗花园", true);
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=双桥铁路小区.北二区", true);
 						    xmlhttp.send();
 						    
 						}
@@ -101,11 +104,16 @@
 						    xmlhttp.send();
 						    
 						}
-						//showHint();
+						showHint();
 
 
 
-		document.getElementsByName("floor")[0].value = 25
-document.getElementsByName("allFloor")[0].value = 34
-document.getElementsByName("title")[0].value = "金穗花园干净整洁，正规成熟，随时看房，无中介"
-document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();
+		document.getElementsByName("flatshare")[0].value = 3;
+document.getElementsByName("floor")[0].value = 3
+document.getElementsByName("allFloor")[0].value = 7
+document.getElementsByName("title")[0].value = "双桥铁路小区.北二区干净整洁，正规成熟，随时看房，无中介"
+//if (document.getElementsByName("noCommission")[0].checked ==false)
+//{document.getElementsByName("noCommission")[0].click()};
+document.getElementsByName("lift")[0].checked = true;
+  var isFirst = setTimeout(function(){history.go(0)},2000); 
+   			 		 window.clearTimeout(isFirst);//去掉定时器 

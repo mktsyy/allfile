@@ -1,9 +1,8 @@
 //选取蓝色优先推送对象
 
 for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
-    if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[11].childNodes[3].attributes[1].value == 'opt-link batchproyx') {
-        document.getElementsByClassName("ck")[i].checked = true;
-    }
+    document.getElementsByClassName("opt-link tofxf btn-fxf")[0].click();
+    document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
 
 };
 
@@ -18,14 +17,14 @@ for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
 //   setTimeout(function(){
 // document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
 //  },1500)
-setInterval( function (){
-document.getElementById("batchprom").click();
-document.getElementsByClassName("btn-ok ui-button ui-button-positive ui-button-medium")[0].click();
-document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
+// setInterval( function (){
+// document.getElementById("batchprom").click();
+// document.getElementsByClassName("btn-ok ui-button ui-button-positive ui-button-medium")[0].click();
+// document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
 
-  document.getElementsByClassName("ui-multipage-next-active")[0].click();
-},500
-  )
+//   document.getElementsByClassName("ui-multipage-next-active")[0].click();
+// },500
+//   )
 
   //自动翻页
 
