@@ -1,0 +1,19 @@
+{
+  "name": "testbackground",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "testbackground",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ // 会一直常驻的后台JS或后台页面
+  "background":
+  {
+    // 2种指定方式，如果指定JS，那么会自动生成一个背景页
+    // "page": "background.html"
+    "scripts": ["readscript.js"],
+    "persistent": false
+  }
+
+}
