@@ -1,8 +1,10 @@
 //选取蓝色优先推送对象
 
 for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
-    document.getElementsByClassName("opt-link tofxf btn-fxf")[0].click();
-    document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
+    if (document.getElementsByClassName("bg-green")[i].innerText=="多图"){
+
+    document.getElementsByClassName("opt-link tofxf btn-fxf")[i].click();
+    }
 
 };
 
