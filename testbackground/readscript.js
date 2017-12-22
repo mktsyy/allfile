@@ -17,14 +17,20 @@ chrome.browserAction.setBadgeBackgroundColor({color: [255, 0, 0, 255]});
 });
 
 
-  // The ID of the extension we want to talk to.
-  var laserExtensionId = "hfhnjlfokkooidcjnlmhmllfmlbmapeh ";
+//   // The ID of the extension we want to talk to.
+//   var laserExtensionId = "hfhnjlfokkooidcjnlmhmllfmlbmapeh";
 
-  // Make a simple request:
-  chrome.runtime.sendMessage(laserExtensionId, {getTargetData: true},
-  function(response) {
-    // if (targetInRange(response.targetData))
-    //   chrome.runtime.sendMessage(laserExtensionId, {activateLasers: true});
-    console.log(response.targetData)
-  });
- 
+// // Start a long-running conversation:
+// var port = chrome.runtime.connect(laserExtensionId);
+// port.postMessage({tab: "remycmd2"});
+
+
+chrome.tabs.onUpdated.addListener(
+    function(tabId,info,tab){
+        if(info.status=="complete")
+            console.log("complete")
+        chrome.tabs.sendMessage(tabId, {greeting: "inupdate"}, function(response) {
+            console.log(response);
+        });
+    }
+)

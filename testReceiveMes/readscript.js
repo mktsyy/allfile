@@ -1,15 +1,15 @@
 
-// For simple requests:
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if (sender.id == blacklistedExtension)
-      return;  // don't allow this extension access
-    else if (request.getTargetData)
-    	console.log("here")
-      sendResponse({targetData: "targetData"});
-    else if (request.activateLasers) {
-      var success = activateLasers();
-      sendResponse({activateLasers: success});
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello"){
+        sendResponse({farewell: "goodbye"});
     }
-  });
+    else if(request.greeting =="inupdate"){
+        sendResponse({farewell:"getUpdate"})
+    } 
+ });
  
+
