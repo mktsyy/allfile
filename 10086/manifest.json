@@ -7,10 +7,10 @@
     "default_icon": "2.png"
 
   },
- "manifest_version": 2,
+"manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["http://shop.10086.cn*"],
+      "matches": ["http://shop.10086.cn/*"],
       "js": ["readscript.js"]
     }
   ]
