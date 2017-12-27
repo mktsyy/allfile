@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^writeAnjukeDate/(\d+)/', views.writeAnjukeDate),
     url(r'^temptestselect/', views.temptestselect),
     url(r'^ftp/', views.ftp),
+    url(r'^get10086phone/', views.get10086phone),
 ]

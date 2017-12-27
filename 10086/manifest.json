@@ -1,0 +1,18 @@
+{
+  "name": "10086toexcel",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "10086toexcel",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://shop.10086.cn*"],
+      "js": ["readscript.js"]
+    }
+  ]
+
+}

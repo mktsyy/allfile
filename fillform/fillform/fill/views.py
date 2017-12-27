@@ -641,3 +641,7 @@ def ftp(request):
 
 	# print str(testselect)
 	return render(request, 'ftp.html')
+
+def get10086phone(request):
+	phone = request.GET.get("a")
+	print phone
