@@ -645,4 +645,6 @@ def ftp(request):
 def get10086phone(request):
 	phone = request.GET.get("a")
 	print phone
+	with open("phone.txt","a+") as phonetxt:
+		phonetxt.write(phone+"\n")
 	return HttpResponse (phone)
