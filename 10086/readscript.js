@@ -1,4 +1,5 @@
-var phone = new Array();
+//从10086拿取被叫数据直txt文件
+// var phone = new Array();
 
 function showHint(sendphone) {
     var xmlhttp;
