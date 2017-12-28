@@ -15,16 +15,16 @@ function showHint(sendphone) {
             console.log("success")
         }
     }
-    xmlhttp.open("GET", "http://localhost:8000/get10086phone/?a="+sendphone.length, true);
+    xmlhttp.open("GET", "http://localhost:8000/get10086phone/?a="+sendphone, true);
     xmlhttp.send();
     
 }
 
-for (var i = document.getElementsByClassName("ued-table mgt-20 ued-loading")["0"].children[1].children.length - 1; i >= 0; i--) {
-    if (document.getElementsByClassName("ued-table mgt-20 ued-loading")["0"].children[1].children[i].children[2].innerHTML == "被叫") {
+for (var i = document.getElementById("Searchresult_onemonthdetail001").childNodes.length - 1; i >= 0; i--) {
+    if (document.getElementById("Searchresult_onemonthdetail001").childNodes[i].childNodes[2].innerHTML == "被叫") {
 
-    phone.push(document.getElementsByClassName("ued-table mgt-20 ued-loading")["0"].children[1].children[i].children[3].innerHTML);
-
+    // phone.push(document.getElementById("Searchresult_onemonthdetail001").childNodes[i].children[3].innerHTML);
+    showHint(document.getElementById("Searchresult_onemonthdetail001").childNodes[i].children[3].innerHTML);
     }
-    showHint(phone.length);
 }
+// showHint(phone.length);
