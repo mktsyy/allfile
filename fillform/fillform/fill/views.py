@@ -469,13 +469,14 @@ def writeAnjukeDate(request,datanum):
 			
 			//选择模板
 			document.getElementsByClassName("use-tpl ui-button ui-button-blue ui-button-micro")[0].click();
+			
 			setTimeout(function(){
 			document.getElementsByName("roomtemplate")[0].click();
-			document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
+			
 			},100)
 
 			
-			//document.getElementsByName("communityAJK")[0].value = '%s';
+			document.getElementsByName("communityAJK")[0].value = '%s';
 
 			function showHint() {
 						    var xmlhttp;
@@ -546,7 +547,7 @@ def writeAnjukeDate(request,datanum):
 						    xmlhttp.send();
 						    
 						}
-						showHint();
+						//showHint();
 
 
 
@@ -594,6 +595,8 @@ def writeAnjukeDate(request,datanum):
 		f.write('document.getElementsByName("lift")[0].checked = true;\n')
 
 		#//自动选择安居库平台
+		f.write('document.getElementById("chooseWeb_2").checked = false;\n')
+		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[2].click();\n')
 		# f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
 
 		#//刷新一次页面(未完成~~)
