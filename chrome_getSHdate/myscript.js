@@ -47,7 +47,7 @@ var rentfl = document.getElementsByClassName("price cf")[0].childNodes[0].childN
 for (var i = document.getElementsByClassName("house_mes")[0].childNodes.length - 1; i >= 0; i--) {
     var part = escape(document.getElementsByClassName("house_mes")[0].childNodes[i].innerText);
     var c = escape("楼层")
-    if (part.indexOf(c) >= 0) {
+    if (part.indexOf(c) > 0) {
         var housecf5 = document.getElementsByClassName("house_mes")[0].childNodes[3].childNodes[1].innerHTML;
         break;
         console.log(housecf5);

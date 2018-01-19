@@ -20,6 +20,10 @@ for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
 //  },1500)
 setInterval( function (){
 document.getElementById("batchprom").click();
+
+//选择推送5天的,不选就为原推送1天
+document.getElementsByName("day")[2].click();
+
 document.getElementsByClassName("btn-ok ui-button ui-button-positive ui-button-medium")[0].click();
 document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
 

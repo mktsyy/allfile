@@ -651,3 +651,17 @@ def get10086phone(request):
 	with open("phone.txt","a+") as phonetxt:
 		phonetxt.write(phone+"\n")
 	return HttpResponse (phone)
+
+
+def getVip58Send(request):
+	sending = request.GET.get("sending")
+	stillSend = request.GET.get("stillSend")
+	account = request.GET.get("account")
+	with open("getvip58send.txt",'a+') as getvip58send:
+		if account != '0':
+			getvip58send.write(account+" ")
+		elif stillSend != '0' :
+			# print stillSend
+			# print sending
+			getvip58send.write(sending+" "+stillSend+" "+"\n")
+	return HttpResponse(sending)

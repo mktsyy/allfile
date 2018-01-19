@@ -11,7 +11,7 @@ import time
 llll=1
 with open("party.txt",'r') as f:
 
-	with open("new.html",'a+') as g:
+	with open("new_SH.html",'a+') as g:
 		htmlhead='''
 		<!DOCTYPE html>
 		<html lang="en">

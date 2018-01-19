@@ -7,5 +7,5 @@ Ticket Id - SUW-261-52912
 setInterval(function(){myTimer()},1000);
 function myTimer(){
     
- document.getElementsByClassName("reload-link")[0].click();
+ document.getElementsByClassName("reload-link")[3].click();
 }

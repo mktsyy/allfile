@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^temptestselect/', views.temptestselect),
     url(r'^ftp/', views.ftp),
     url(r'^get10086phone/', views.get10086phone),
+    url(r'^getVip58Send/', views.getVip58Send),
 ]

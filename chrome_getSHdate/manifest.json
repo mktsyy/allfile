@@ -8,7 +8,7 @@
   },
 "content_scripts": [
     {
-      "matches": ["http://www.hizhu.com/shanghai/detail*"],
+      "matches": ["http://www.hizhu.com/shanghai/roomDetail*"],
       "js": ["myscript.js"]
     }
   ]
