@@ -1,11 +1,11 @@
 
 			
 
-			document.getElementsByName("room")[0].value = 3 ;
-			document.getElementsByName("hall")[0].value = 2 ;
-			document.getElementsByName("bathroom")[0].value = 1 ;
-			document.getElementsByName("roomarea")[0].value = 14 ;
-			document.getElementsByName("rentprice")[0].value = 1200 ;
+			document.getElementsByName("room")[0].value = 4 ;
+			document.getElementsByName("hall")[0].value = 1 ;
+			document.getElementsByName("bathroom")[0].value = 2 ;
+			document.getElementsByName("roomarea")[0].value = 15 ;
+			document.getElementsByName("rentprice")[0].value = 800 ;
 
 			
 			//房屋类型
@@ -30,11 +30,14 @@
 			
 			setTimeout(function(){
 			document.getElementsByName("roomtemplate")[0].click();
+
+			//模版确认延迟点击
+			document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
 			
 			},100)
 
 			
-			document.getElementsByName("communityAJK")[0].value = '永泰花苑';
+			document.getElementsByName("community_unite")[0].value = '宝嘉誉峰';
 
 			function showHint() {
 						    var xmlhttp;
@@ -72,7 +75,7 @@
 
 						   			        }
 						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=永泰花苑", true);
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=宝嘉誉峰", true);
 						    xmlhttp.send();
 						    
 						}
@@ -110,13 +113,20 @@
 
 
 		document.getElementsByName("flatshare")[0].value = 3;
-document.getElementsByName("floor")[0].value = 8
+document.getElementsByName("floor")[0].value = 17
 document.getElementsByName("allFloor")[0].value = 18
-document.getElementsByName("title")[0].value = "永泰花苑地铁沿线，南北通透，性价比高，采光好"
-//if (document.getElementsByName("noCommission")[0].checked ==false)
-//{document.getElementsByName("noCommission")[0].click()};
-document.getElementsByName("lift")[0].checked = true;
+document.getElementsByName("title")[0].value = "宝嘉誉峰干净整洁，正规成熟，随时看房，无中介"
+if (document.getElementsByName("noCommission")[0].checked ==false)
+{document.getElementsByName("noCommission")[0].click()};
+
+		if (document.getElementsByName("allFloor")[0].value > 7) {
+			document.getElementsByName("lift")[0].checked = true;
+		}
+		else{
+			document.getElementsByName("lift")[1].checked = true;
+		}
+		
 document.getElementById("chooseWeb_2").checked = false;
-document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[2].click();
+document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
   var isFirst = setTimeout(function(){history.go(0)},2000); 
    			 		 window.clearTimeout(isFirst);//去掉定时器 

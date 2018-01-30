@@ -472,11 +472,14 @@ def writeAnjukeDate(request,datanum):
 			
 			setTimeout(function(){
 			document.getElementsByName("roomtemplate")[0].click();
+
+			//模版确认延迟点击
+			document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
 			
 			},100)
 
 			
-			document.getElementsByName("communityAJK")[0].value = '%s';
+			document.getElementsByName("community_unite")[0].value = '%s';
 
 			function showHint() {
 						    var xmlhttp;
@@ -589,14 +592,22 @@ def writeAnjukeDate(request,datanum):
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
 		#//选择无中介费
-		f.write('//if (document.getElementsByName("noCommission")[0].checked ==false)\n//{document.getElementsByName("noCommission")[0].click()};\n')
+		f.write('if (document.getElementsByName("noCommission")[0].checked ==false)\n{document.getElementsByName("noCommission")[0].click()};\n')
 
 		#//自动选择电梯
-		f.write('document.getElementsByName("lift")[0].checked = true;\n')
+		allFloor = '''
+		if (document.getElementsByName("allFloor")[0].value > 7) {
+			document.getElementsByName("lift")[0].checked = true;
+		}
+		else{
+			document.getElementsByName("lift")[1].checked = true;
+		}
+		'''
+		f.write(allFloor+'\n')
 
 		#//自动选择安居库平台
 		f.write('document.getElementById("chooseWeb_2").checked = false;\n')
-		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[2].click();\n')
+		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();\n')
 		# f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
 
 		#//刷新一次页面(未完成~~)

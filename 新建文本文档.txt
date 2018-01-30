@@ -4,8 +4,15 @@ Ticket Id - SUW-261-52912
 干净整洁，正规成熟，随时看房，无中介
 
 
-setInterval(function(){myTimer()},1000);
-function myTimer(){
-    
- document.getElementsByClassName("reload-link")[3].click();
+//完全修正点击安居客填表,无视插件所属位置
+for (var i = document.getElementsByClassName("extension-details").length - 1; i >= 0; i--) {
+    if (document.getElementsByClassName("extension-details")[i].childNodes[1].childNodes[1].innerText == "安居客填表") {
+        setInterval(function() { myTimer() }, 1000);
+        break;
+        function myTimer() {
+
+            document.getElementsByClassName("reload-link")[i].click();
+        }
+    }
+
 }

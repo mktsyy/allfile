@@ -1,0 +1,16 @@
+{
+  "name": "拿取杭州房间数据",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "拿取杭州房间数据",
+  "browser_action": {
+    "default_icon": "1.png"
+  },
+"content_scripts": [
+    {
+      "matches": ["http://www.hizhu.com/hangzhou/roomDetail*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
+

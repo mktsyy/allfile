@@ -1,0 +1,16 @@
+{
+  "name": "删除最后页过期的房源",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "删除过期的房源",
+  "browser_action": {
+    "default_icon": "1.png"
+  },
+"content_scripts": [
+    {
+      "matches": ["http://vip.58ganji.com/*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
+

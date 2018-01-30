@@ -22,7 +22,7 @@
 
 //在同一窗口打开房源信息
 // setInterval(function(){
-//     document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
+//     document.getElementsByClassName("house_title")[0].childNodes[1].setAttribute("target", "");
 // },500)
 
 //小区名字
@@ -47,8 +47,8 @@ var rentfl = document.getElementsByClassName("price cf")[0].childNodes[0].childN
 for (var i = document.getElementsByClassName("house_mes")[0].childNodes.length - 1; i >= 0; i--) {
     var part = escape(document.getElementsByClassName("house_mes")[0].childNodes[i].innerText);
     var c = escape("楼层")
-    if (part.indexOf(c) > 0) {
-        var housecf5 = document.getElementsByClassName("house_mes")[0].childNodes[3].childNodes[1].innerHTML;
+    if (part.indexOf(c) >= 0) {
+        var housecf5 = document.getElementsByClassName("house_mes")[0].childNodes[i].childNodes[1].innerHTML;
         break;
         console.log(housecf5);
     } else {
@@ -84,7 +84,7 @@ function showHint() {
 showHint();
 
 //自动关闭窗口
-setTimeout(function() {
-    window.close();
-}, 1000)
+// setTimeout(function() {
+//     window.close();
+// }, 1000)
 // alert("done!");

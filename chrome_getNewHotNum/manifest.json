@@ -1,0 +1,16 @@
+{
+  "name": "统计有多少条要增加",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "统计有多少条要增加",
+  "browser_action": {
+    "default_icon": "1.png"
+  },
+"content_scripts": [
+    {
+      "matches": ["http://vip.58ganji.com/*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
+

@@ -22,7 +22,10 @@ setInterval( function (){
 document.getElementById("batchprom").click();
 
 //选择推送5天的,不选就为原推送1天
-document.getElementsByName("day")[2].click();
+// document.getElementsByName("day")[2].click();
+
+//改为3天的
+document.getElementsByName("day")[1].click();
 
 document.getElementsByClassName("btn-ok ui-button ui-button-positive ui-button-medium")[0].click();
 document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
