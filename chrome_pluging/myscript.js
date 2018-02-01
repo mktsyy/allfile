@@ -24,7 +24,7 @@
 // setInterval(function(){
 //     document.getElementsByClassName("house_title")[0].childNodes[0].setAttribute("target", "");
 // },500)
-setInterval(function(){
+// setInterval(function(){
 //小区名字
 var tier = document.getElementById("mess").childNodes[1].innerHTML.split("·")[1].split("&nbsp;")[1];
 document.getElementsByTagName("TITLE")[0].text = tier;
@@ -99,5 +99,5 @@ setTimeout(function() {
 }, 1000)
 // alert("done!");
 
-}, 5000)
+// }, 1000)
 

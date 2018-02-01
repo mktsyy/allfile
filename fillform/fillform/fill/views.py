@@ -591,9 +591,6 @@ def writeAnjukeDate(request,datanum):
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 
-		#//选择无中介费
-		f.write('if (document.getElementsByName("noCommission")[0].checked ==false)\n{document.getElementsByName("noCommission")[0].click()};\n')
-
 		#//自动选择电梯
 		allFloor = '''
 		if (document.getElementsByName("allFloor")[0].value > 7) {
@@ -614,6 +611,9 @@ def writeAnjukeDate(request,datanum):
 		freshPageOnce = '''  var isFirst = setTimeout(function(){history.go(0)},2000); 
    			 		 window.clearTimeout(isFirst);//去掉定时器 \n'''
 		f.write(freshPageOnce)
+
+		#//选择无中介费
+		f.write('if (document.getElementsByName("noCommission")[0].checked ==false)\n{document.getElementsByName("noCommission")[0].click()};\n')
 
 			
 	response = HttpResponse(json.dumps(returntier))
