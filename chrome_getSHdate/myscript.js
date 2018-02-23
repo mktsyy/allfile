@@ -84,7 +84,7 @@ function showHint() {
 showHint();
 
 //自动关闭窗口
-// setTimeout(function() {
-//     window.close();
-// }, 1000)
+setTimeout(function() {
+    window.close();
+}, 1000)
 // alert("done!");

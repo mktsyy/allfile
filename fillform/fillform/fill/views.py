@@ -284,6 +284,7 @@ document.getElementsByName("equipment[]")[i].checked=true
 		#每次更换标题信息
 		if int(datanum) - othervarible.FIRSTNUM < 0:
 			othervarible.FIRSTNUM = othervarible.FIRSTNUM - 3
+
 			
 		print othervarible.FIRSTNUM
 		# if int(datanum)-othervarible.FIRSTNUM== 0:
@@ -432,6 +433,7 @@ def uploadpic(request):
 
 def writeAnjukeDate(request,datanum):
 	returndata = Person.objects.all()[int(datanum)]
+	print int(datanum)
 	print returndata.tier
 	housenum = len(Person.objects.all())
 	returntier = {"tier":(returndata.tier).encode("utf-8"),"price":returndata.rentfl.encode("utf-8"),"housenum":str(housenum)}
@@ -576,6 +578,10 @@ def writeAnjukeDate(request,datanum):
 			f.write('document.getElementsByName("allFloor")[0].value = %s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
 
 		#每次更换标题信息
+
+		if int(datanum) == 0:##当刷新重新开始时,全部变量归零
+			othervarible.FIRSTNUM = 0
+
 		if int(datanum) - othervarible.FIRSTNUM < 0:
 			othervarible.FIRSTNUM = othervarible.FIRSTNUM - 3
 			
@@ -590,6 +596,8 @@ def writeAnjukeDate(request,datanum):
 			title = (returndata.tier).encode("utf-8")+"干净整洁，正规成熟，随时看房，无中介"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 			othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
+		else:
+			othervarible.FIRSTNUM = int(datanum)##当值超过三,永远使用为0的标题
 
 		#//自动选择电梯
 		allFloor = '''
@@ -604,7 +612,10 @@ def writeAnjukeDate(request,datanum):
 
 		#//自动选择安居库平台
 		f.write('document.getElementById("chooseWeb_2").checked = false;\n')
-		f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();\n')
+		f.write('setTimeout(function(){ \
+document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[2].click(); \
+},100);\n' 
+		)
 		# f.write('document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[1].click();\n')
 
 		#//刷新一次页面(未完成~~)
