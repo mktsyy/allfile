@@ -563,7 +563,8 @@ def writeAnjukeDate(request,datanum):
 		f.write(fillAnjuke)
 
 		if int(returndata.houseinfo.encode("utf-8").split("室")[0]) > 3:
-			f.write('document.getElementsByName("flatshare")[0].value = 3;\n')
+			# f.write('document.getElementsByName("flatshare")[0].value = 3;\n')
+			f.write('document.getElementsByName("flatshare")[0].value = %s;\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
 		else:
 			f.write('document.getElementsByName("flatshare")[0].value = %s;\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
 
@@ -590,7 +591,7 @@ def writeAnjukeDate(request,datanum):
 			title = (returndata.tier).encode("utf-8")+"精装现房，格局方正，男女不限，随时住"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 1:
-			title = (returndata.tier).encode("utf-8")+"地铁沿线，南北通透，性价比高，采光好"
+			title = (returndata.tier).encode("utf-8")+"地铁沿线，南北通透，性价比高，采光好"	
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 2:
 			title = (returndata.tier).encode("utf-8")+"干净整洁，正规成熟，随时看房，无中介"
@@ -610,8 +611,11 @@ def writeAnjukeDate(request,datanum):
 		'''
 		f.write(allFloor+'\n')
 
+		#过30秒自动点击发布
+		# f.write('setTimeout(function(){ document.getElementById("publish-rent-add").click(); },20000);\n')
+
 		#//自动选择安居库平台
-		f.write('document.getElementById("chooseWeb_2").checked = false;\n')
+		f.write('document.getElementById("chooseWeb_2").checked = true;\n')
 		f.write('setTimeout(function(){ \
 document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[2].click(); \
 },100);\n' 
@@ -625,6 +629,10 @@ document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")
 
 		#//选择无中介费
 		f.write('if (document.getElementsByName("noCommission")[0].checked ==false)\n{document.getElementsByName("noCommission")[0].click()};\n')
+
+		#过30秒自动点击发布
+		f.write('setTimeout(function(){ document.getElementById("publish-rent-add").click(); },30000);\n')
+
 
 			
 	response = HttpResponse(json.dumps(returntier))
