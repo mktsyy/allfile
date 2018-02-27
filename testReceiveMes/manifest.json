@@ -15,7 +15,10 @@
       "matches": ["http://www.hizhu.com/*"],
       "js": ["readscript.js"]
     }
-  ]
+  ],
+  "externally_connectable": {
+    "matches": ["https://www.baidu.com/*"]
+  }
 
 
 }

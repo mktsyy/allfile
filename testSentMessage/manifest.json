@@ -1,0 +1,30 @@
+{
+  "name": "安居客填表",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "安居客填表",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["https://www.baidu.com/*"],
+      "js": ["readscript.js"]
+    }
+  ],
+
+  // "externally_connectable": {
+  //   "matches": ["http://www.hizhu.com/*"]
+  // }
+  "background":
+  {
+      // 2种指定方式，如果指定JS，那么会自动生成一个背景页
+      "scripts": ["background.js"]
+    },
+  "permissions": [
+          "tabs", "http://*/*", "https://*/*"
+      ]
+
+}
