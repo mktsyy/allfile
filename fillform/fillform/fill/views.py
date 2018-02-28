@@ -591,7 +591,7 @@ def writeAnjukeDate(request,datanum):
 			title = (returndata.tier).encode("utf-8")+"精装现房，格局方正，男女不限，随时住"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 1:
-			title = (returndata.tier).encode("utf-8")+"地铁沿线，南北通透，性价比高，采光好"	
+			title = (returndata.tier).encode("utf-8")+"南北通透，性价比高，采光好"	
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 2:
 			title = (returndata.tier).encode("utf-8")+"干净整洁，正规成熟，随时看房，无中介"
