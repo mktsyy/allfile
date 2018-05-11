@@ -1,11 +1,11 @@
 
 			
 
-			document.getElementsByName("room")[0].value = 4 ;
+			document.getElementsByName("room")[0].value = 2 ;
 			document.getElementsByName("hall")[0].value = 1 ;
-			document.getElementsByName("bathroom")[0].value = 2 ;
-			document.getElementsByName("roomarea")[0].value = 15 ;
-			document.getElementsByName("rentprice")[0].value = 800 ;
+			document.getElementsByName("bathroom")[0].value = 1 ;
+			document.getElementsByName("roomarea")[0].value = 85 ;
+			document.getElementsByName("rentprice")[0].value = 1200 ;
 
 			
 			//房屋类型
@@ -37,7 +37,7 @@
 			},100)
 
 			
-			document.getElementsByName("community_unite")[0].value = '宝嘉誉峰';
+			document.getElementsByName("community_unite")[0].value = '桃源小区';
 
 			function showHint() {
 						    var xmlhttp;
@@ -75,7 +75,7 @@
 
 						   			        }
 						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=宝嘉誉峰", true);
+						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=桃源小区", true);
 						    xmlhttp.send();
 						    
 						}
@@ -112,12 +112,10 @@
 
 
 
-		document.getElementsByName("flatshare")[0].value = 3;
-document.getElementsByName("floor")[0].value = 17
-document.getElementsByName("allFloor")[0].value = 18
-document.getElementsByName("title")[0].value = "宝嘉誉峰干净整洁，正规成熟，随时看房，无中介"
-if (document.getElementsByName("noCommission")[0].checked ==false)
-{document.getElementsByName("noCommission")[0].click()};
+		document.getElementsByName("flatshare")[0].value = 2;
+document.getElementsByName("floor")[0].value = 3
+document.getElementsByName("allFloor")[0].value = 6
+document.getElementsByName("title")[0].value = "桃源小区南北通透，性价比高，采光好"
 
 		if (document.getElementsByName("allFloor")[0].value > 7) {
 			document.getElementsByName("lift")[0].checked = true;
@@ -126,7 +124,10 @@ if (document.getElementsByName("noCommission")[0].checked ==false)
 			document.getElementsByName("lift")[1].checked = true;
 		}
 		
-document.getElementById("chooseWeb_2").checked = false;
-document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[0].click();
+document.getElementById("chooseWeb_2").checked = true;
+setTimeout(function(){ document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")[2].click(); },100);
   var isFirst = setTimeout(function(){history.go(0)},2000); 
    			 		 window.clearTimeout(isFirst);//去掉定时器 
+if (document.getElementsByName("noCommission")[0].checked ==false)
+{document.getElementsByName("noCommission")[0].click()};
+setTimeout(function(){ document.getElementById("publish-rent-add").click(); },30000);
