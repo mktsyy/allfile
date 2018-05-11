@@ -9,6 +9,7 @@ import json
 from tkinter import *    #注意模块导入方式，否则代码会有差别
 
 ##Python 下载win32api 模块  终端输入“pip install pypiwin32”
+
 import win32api, win32gui  
 ct = win32api.GetConsoleTitle()  
 hd = win32gui.FindWindow(0,ct)  
