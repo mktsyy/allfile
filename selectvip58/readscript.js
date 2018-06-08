@@ -1,7 +1,7 @@
 //选取蓝色优先推送对象
 
 for (var i = document.getElementsByClassName("ck").length - 1; i >= 0; i--) {
-    if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[11].childNodes[3].attributes[1].value == 'opt-link batchproyx') {
+    if (document.getElementsByClassName("ck")[i].parentNode.parentNode.childNodes[13].childNodes[3].attributes[1].value == 'opt-link batchproyx') {
         document.getElementsByClassName("ck")[i].checked = true;
     }
 
@@ -25,7 +25,10 @@ document.getElementById("batchprom").click();
 // document.getElementsByName("day")[2].click();
 
 //改为3天的
-document.getElementsByName("day")[1].click();
+// document.getElementsByName("day")[1].click();
+
+//改为7天的
+document.getElementsByName("day")[3].click();
 
 document.getElementsByClassName("btn-ok ui-button ui-button-positive ui-button-medium")[0].click();
 document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();
