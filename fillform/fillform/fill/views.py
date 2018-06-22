@@ -695,3 +695,85 @@ def getVip58Send(request):
 			# print sending
 			getvip58send.write(sending+" "+stillSend+" "+"\n")
 	return HttpResponse(sending)
+
+##嗨住后端接收数据接口
+from openpyxl import load_workbook
+import when
+
+FIRSTNAME = "徐汇"
+FIRSTVAR = 0
+def HZadmin(request):
+
+
+	##发布套数
+	HZalert = request.GET.get("HZalert")
+	##发布区域
+	region1 = request.GET.get("region")
+
+	region = {"2":"静安","7":"卢湾","14":"黄浦","24":"徐汇","43":"长宁","53":"浦东","88":"虹口","97":"杨浦","108":"普陀","121":"闵行","140":"闸北","147":"宝山","166":"嘉定","177":"松江","197":"奉贤","206":"金山","215":"青浦","224":"崇明"}
+	print region[region1]
+	print HZalert
+
+	if region[region1] !=FIRSTNAME:
+		global FIRSTVAR
+		FIRSTVAR = 0
+		global FIRSTNAME
+		FIRSTNAME = region[region1]
+
+
+	##装载表格
+	wb = load_workbook(filename = '58发房.xlsx')
+
+	##确定当日时间
+	i = when.today()
+	today = str(i.month) + "月" + str(i.day) + "日"
+
+	##如果当日sheet未建立的话，就建立
+	if today not in wb.get_sheet_names():
+		ws2 = wb.create_sheet(title=today)
+
+	##选择今日sheet
+	sheet_ranges = wb[today]
+
+	##按照excel列来生成字典
+	excelNum = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+	region = [
+	"徐汇",
+	"长宁",
+	"浦东",
+	"浦东",
+	"杨浦",
+	"普陀",
+	"闵行",
+	"闵行",
+	"闸北",
+	"宝山",
+	"宝山",
+	"嘉定",
+	"嘉定",
+	"松江",
+	"松江",
+	"青浦",
+	]
+	column = dict(zip(region,excelNum))
+	# print (column)
+
+	allColumn = ["E","F","G","H","I","J","K","L","M","N","O","P"]
+
+	##写数据至表格
+	sheet_ranges[allColumn[FIRSTVAR]+column[region[region1]]].value = HZalert
+
+	##保存表格
+	wb.save(filename = '58发房.xlsx')
+
+	##变量增加
+	FIRSTVAR = FIRSTVAR + 1
+
+
+
+	response = HttpResponse ("ok")
+	response["Access-Control-Allow-Origin"] = "*"
+	response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+	response["Access-Control-Max-Age"] = "1000"
+	response["Access-Control-Allow-Headers"] = "*"
+	return response
