@@ -49,7 +49,7 @@ window.alert = function(){
     //区域值传递到后台进行处理
     var region = document.getElementsByName("region")[0].value;
 
-    // console.log(aa);
+    console.log(aa);
 
     function showHint() {
         var xmlhttp;
@@ -66,7 +66,7 @@ window.alert = function(){
                 // alert("tier");
             }
         }
-        xmlhttp.open("GET", "http://localhost:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
+        xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);
         xmlhttp.send();
         
     }

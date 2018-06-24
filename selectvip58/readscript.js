@@ -28,7 +28,10 @@ document.getElementById("batchprom").click();
 // document.getElementsByName("day")[1].click();
 
 //改为7天的
-document.getElementsByName("day")[3].click();
+// document.getElementsByName("day")[3].click();
+
+//改为15天的
+document.getElementsByName("day")[4].click();
 
 document.getElementsByClassName("btn-ok ui-button ui-button-positive ui-button-medium")[0].click();
 document.getElementsByClassName("ui-button ui-button-medium ui-button-positive")[0].click();

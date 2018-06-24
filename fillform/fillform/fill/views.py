@@ -722,7 +722,7 @@ def HZadmin(request):
 
 
 	##装载表格
-	wb = load_workbook(filename = '58发房.xlsx')
+	wb = load_workbook('58.xlsx')
 
 	##确定当日时间
 	i = when.today()
