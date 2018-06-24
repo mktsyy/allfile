@@ -63,7 +63,8 @@ window.alert = function(){
         }
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                // alert("tier");
+                // var value = json.parse(xmlhttp.responseText)
+                alert(xmlhttp.responseText);
             }
         }
         xmlhttp.open("GET", "http://127.0.0.1:8000/HZadmin/?HZalert=" + aa + "&region=" + region, true);

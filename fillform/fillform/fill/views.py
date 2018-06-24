@@ -702,6 +702,8 @@ import when
 
 FIRSTNAME = "徐汇"
 FIRSTVAR = 0
+VALUES = 0
+ROW = 0
 def HZadmin(request):
 
 
@@ -711,33 +713,35 @@ def HZadmin(request):
 	region1 = request.GET.get("region")
 
 	region = {"2":"静安","7":"卢湾","14":"黄浦","24":"徐汇","43":"长宁","53":"浦东","88":"虹口","97":"杨浦","108":"普陀","121":"闵行","140":"闸北","147":"宝山","166":"嘉定","177":"松江","197":"奉贤","206":"金山","215":"青浦","224":"崇明"}
-	print region[region1]
-	print HZalert
+	# print region[region1]
+	# print HZalert
 
 	if region[region1] !=FIRSTNAME:
 		global FIRSTVAR
 		FIRSTVAR = 0
 		global FIRSTNAME
 		FIRSTNAME = region[region1]
+		global VALUES
+		VALUES = 0
 
 
 	##装载表格
-	wb = load_workbook('58.xlsx')
+	wb = load_workbook(r'F:\\allfiles\\fillform\\fillform\\'+'58发房.xlsx')
 
 	##确定当日时间
 	i = when.today()
 	today = str(i.month) + "月" + str(i.day) + "日"
 
 	##如果当日sheet未建立的话，就建立
-	if today not in wb.get_sheet_names():
+	if today not in wb.sheetnames:##这里wb的语法有所改变
 		ws2 = wb.create_sheet(title=today)
 
 	##选择今日sheet
 	sheet_ranges = wb[today]
 
 	##按照excel列来生成字典
-	excelNum = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
-	region = [
+	excelNum = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+	region2 = [
 	"徐汇",
 	"长宁",
 	"浦东",
@@ -755,23 +759,41 @@ def HZadmin(request):
 	"松江",
 	"青浦",
 	]
-	column = dict(zip(region,excelNum))
+	column = dict(zip(region2,excelNum))
 	# print (column)
 
-	allColumn = ["E","F","G","H","I","J","K","L","M","N","O","P"]
+	allColumn = ["E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+
 
 	##写数据至表格
-	sheet_ranges[allColumn[FIRSTVAR]+column[region[region1]]].value = HZalert
+	sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = int(HZalert)
+
+	##所有列的和，统计是否超过100
+	for grip in allColumn:
+		print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+		if isinstance(sheet_ranges[str(grip)+str(excelNum[ROW])].value,int):
+			print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+
+			VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
+	print (VALUES)
+	##判断是否超过100，超过就下一区域
+	if VALUES > 100:
+		global ROW
+		ROW = ROW + 1
+		FIRSTVAR = -1
+		VALUES = 0
 
 	##保存表格
-	wb.save(filename = '58发房.xlsx')
+	wb.save(r'F:\\allfiles\\fillform\\fillform\\'+'58发房.xlsx')
 
 	##变量增加
 	FIRSTVAR = FIRSTVAR + 1
+	# print FIRSTVAR
 
 
 
-	response = HttpResponse ("ok")
+
+	response = HttpResponse(json.dumps({"values1":VALUES}))
 	response["Access-Control-Allow-Origin"] = "*"
 	response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
 	response["Access-Control-Max-Age"] = "1000"
