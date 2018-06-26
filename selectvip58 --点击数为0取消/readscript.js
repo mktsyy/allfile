@@ -7,13 +7,14 @@
 //遍历点击数,没有点击就勾选
 for (var i = document.getElementsByClassName("num").length - 2; i >= 0; i--) {
 	if (Number(document.getElementsByClassName("num")[i].innerText.split("/")[0])==0 &&
-		Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==0) {
+		(Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==1||
+		Number(document.getElementsByClassName("num")[i].innerText.split("/")[1])==0)) {
 		document.getElementsByClassName("num")[i].parentNode.childNodes[1].childNodes[1].checked = true;
 	}
 }
 
 //点击取消推送
-document.getElementById("cancelpro").click();
+// document.getElementById("cancelpro").click();
 
 //翻页绑定左右按键
 

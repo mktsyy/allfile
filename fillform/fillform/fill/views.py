@@ -716,17 +716,17 @@ def HZadmin(request):
 	# print region[region1]
 	# print HZalert
 
-	if region[region1] !=FIRSTNAME:
-		global FIRSTVAR
-		FIRSTVAR = 0
-		global FIRSTNAME
-		FIRSTNAME = region[region1]
-		global VALUES
-		VALUES = 0
+	# if region[region1] !=FIRSTNAME:
+	# 	global FIRSTVAR
+	# 	FIRSTVAR = 0
+	# 	global FIRSTNAME
+	# 	FIRSTNAME = region[region1]
+	# 	global VALUES
+	# 	VALUES = 0
 
 
 	##装载表格
-	wb = load_workbook(r'F:\\allfiles\\fillform\\fillform\\'+'58发房.xlsx')
+	wb = load_workbook('58发房.xlsx')
 
 	##确定当日时间
 	i = when.today()
@@ -766,25 +766,26 @@ def HZadmin(request):
 
 
 	##写数据至表格
+	global FIRSTVAR
 	sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = int(HZalert)
 
 	##所有列的和，统计是否超过100
 	for grip in allColumn:
-		print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+		# print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
 		if isinstance(sheet_ranges[str(grip)+str(excelNum[ROW])].value,int):
-			print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
-
+			# print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+			global VALUES
 			VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
 	print (VALUES)
 	##判断是否超过100，超过就下一区域
-	if VALUES > 100:
+	if VALUES >= 100:
 		global ROW
 		ROW = ROW + 1
 		FIRSTVAR = -1
 		VALUES = 0
 
 	##保存表格
-	wb.save(r'F:\\allfiles\\fillform\\fillform\\'+'58发房.xlsx')
+	wb.save('58发房.xlsx')
 
 	##变量增加
 	FIRSTVAR = FIRSTVAR + 1

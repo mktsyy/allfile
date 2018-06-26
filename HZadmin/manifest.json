@@ -8,7 +8,7 @@
   },
 "content_scripts": [
     {
-      "matches": ["http://120.26.119.103/admin/Home/Openapi/fabulist*"],
+      "matches": ["http://120.26.119.103/admin/Openapi/fabulist.html?no=3&leftno=102*"],
       "js": ["myscript.js"]
     }
   ]
