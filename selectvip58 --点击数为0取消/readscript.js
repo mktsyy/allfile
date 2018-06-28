@@ -14,7 +14,7 @@ for (var i = document.getElementsByClassName("num").length - 2; i >= 0; i--) {
 }
 
 //点击取消推送
-// document.getElementById("cancelpro").click();
+document.getElementById("cancelpro").click();
 
 //翻页绑定左右按键
 
