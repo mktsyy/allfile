@@ -8,7 +8,8 @@ setTimeout(function(){
 
                 // 判断总点击是否为0
                 if (document.getElementsByClassName("num")[i].innerText.split("/")[1] !== "0" &&
-                    document.getElementsByClassName("num")[i].innerText.split("/")[1] !== "-") {
+                    document.getElementsByClassName("num")[i].innerText.split("/")[1] !== "-" &&
+                    document.getElementsByClassName("num")[i].innerText.split("/")[1] !== "1") {
                     console.log("ok")
                     // 判断昨日点击是否为0
                     // if (Number(document.getElementsByClassName("num")[i].innerText.split("/")[0])!= 0) {
