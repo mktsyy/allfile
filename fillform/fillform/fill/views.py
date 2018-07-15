@@ -219,6 +219,7 @@ def getid(a):
 def temptestselect(request):
 	testselect = request.GET.get("test")
 	# print str(testselect)
+	print(os.getcwd())
 	return HttpResponse (str(testselect))
 
 

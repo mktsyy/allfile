@@ -1,0 +1,16 @@
+{
+  "name": "嗨住后台",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "嗨住后台",
+  "browser_action": {
+    "default_icon": "1.png"
+  },
+"content_scripts": [
+    {
+      "matches": ["http://120.26.119.103/admin/Home/*"],
+      "js": ["myscript.js"]
+    }
+  ]
+}
+
