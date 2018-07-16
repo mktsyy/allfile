@@ -705,6 +705,7 @@ import when
 FIRSTVAR = 0
 VALUES = 0
 ROW = 0
+numList = []
 def HZadmin(request):
 
 
@@ -726,19 +727,19 @@ def HZadmin(request):
 	# 	VALUES = 0
 
 
-	##装载表格
-	wb = load_workbook('58发房.xlsx')
+	# ##装载表格
+	# wb = load_workbook('58发房.xlsx')
 
-	##确定当日时间
-	i = when.today()
-	today = str(i.month) + "月" + str(i.day) + "日"
+	# ##确定当日时间
+	# i = when.today()
+	# today = str(i.month) + "月" + str(i.day) + "日"
 
-	##如果当日sheet未建立的话，就建立
-	if today not in wb.sheetnames:##这里wb的语法有所改变
-		ws2 = wb.create_sheet(title=today)
+	# ##如果当日sheet未建立的话，就建立
+	# if today not in wb.sheetnames:##这里wb的语法有所改变
+	# 	ws2 = wb.create_sheet(title=today)
 
-	##选择今日sheet
-	sheet_ranges = wb[today]
+	# ##选择今日sheet
+	# sheet_ranges = wb[today]
 
 	##按照excel列来生成字典
 	excelNum = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
@@ -767,36 +768,73 @@ def HZadmin(request):
 	"AA","AB","AC","AD","AE","AF","AG","AH","AI","AJ","AK","AL","AM","AN","AO","AP","AQ","AR","AS","AT","AU","AV","AW","AX","AY","AZ"]
 
 
-	##写数据至表格
-	global FIRSTVAR
-	sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = int(HZalert)
+	##写数据至表格(旧方法，已改进)
+	# global FIRSTVAR
+	# sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = int(HZalert)
 
-	##所有列的和，统计是否超过100
-	for grip in allColumn:
-		# print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
-		if isinstance(sheet_ranges[str(grip)+str(excelNum[ROW])].value,int):
-			# print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
-			global VALUES
-			VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
-	print (VALUES)
-	##判断是否超过100，超过就下一区域
-	if VALUES >= 100:
+	##准备改写，把所有数据保存至列表
+	global numList
+	b=numList.append(int(HZalert))
+	print (numList)
+	print (sum(numList))
+	##统计列表和
+	# VALUES = sum(numList)
+	# print (VALUES)
+
+
+	##所有列的和，统计是否超过100(原方法)
+	# for grip in allColumn:
+	# 	# print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+	# 	if isinstance(sheet_ranges[str(grip)+str(excelNum[ROW])].value,int):
+	# 		# print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+	# 		global VALUES
+	# 		VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
+	# print (VALUES)
+
+	##判断是否超过100，超过就下一区域(原方法，已改写)
+	if sum(numList) >= 100:
+		# print (numList)
+
+		##装载表格
+		wb = load_workbook('58发房.xlsx')
+
+		##确定当日时间
+		i = when.today()
+		today = str(i.month) + "月" + str(i.day) + "日"
+
+		##如果当日sheet未建立的话，就建立
+		if today not in wb.sheetnames:##这里wb的语法有所改变
+			ws2 = wb.create_sheet(title=today)
+
+		##选择今日sheet
+		sheet_ranges = wb[today]
+
+		##循环把数据写入excel表格
+		for i in numList:
+			global FIRSTVAR
+			sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = i
+			##变量增加
+			FIRSTVAR = FIRSTVAR + 1
+		##保存表格
+		wb.save('58发房.xlsx')
+
 		global ROW
 		ROW = ROW + 1
-		FIRSTVAR = -1
-		VALUES = 0
+		FIRSTVAR = 0
+		# VALUES = 0
+		numList = []
 
-	##保存表格
-	wb.save('58发房.xlsx')
 
-	##变量增加
-	FIRSTVAR = FIRSTVAR + 1
+
+	##变量增加(老方法，已不用)
+	# FIRSTVAR = FIRSTVAR + 1
 	# print FIRSTVAR
 
 
 
 
-	response = HttpResponse(json.dumps({"values1":VALUES}))
+	response = HttpResponse(sum(numList))
+	# response = HttpResponse(json.dumps({"values1":VALUES}))
 	response["Access-Control-Allow-Origin"] = "*"
 	response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
 	response["Access-Control-Max-Age"] = "1000"
