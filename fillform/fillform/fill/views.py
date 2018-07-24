@@ -711,8 +711,8 @@ def HZadmin(request):
 
 	##发布套数
 	HZalert = request.GET.get("HZalert")
-	##发布区域
-	# region1 = request.GET.get("region")
+	##发布区域(现更改为判断是否保存参数)
+	region1 = request.GET.get("region")
 
 	# region = {"2":"静安","7":"卢湾","14":"黄浦","24":"徐汇","43":"长宁","53":"浦东","88":"虹口","97":"杨浦","108":"普陀","121":"闵行","140":"闸北","147":"宝山","166":"嘉定","177":"松江","197":"奉贤","206":"金山","215":"青浦","224":"崇明"}
 	# print region[region1]
@@ -790,6 +790,38 @@ def HZadmin(request):
 	# 		global VALUES
 	# 		VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
 	# print (VALUES)
+
+	##用region参数来控制保存
+	if region1 == "save":
+		##装载表格
+		wb = load_workbook('58发房.xlsx')
+
+		##确定当日时间
+		i = when.today()
+		today = str(i.month) + "月" + str(i.day) + "日"
+
+		##如果当日sheet未建立的话，就建立
+		if today not in wb.sheetnames:##这里wb的语法有所改变
+			ws2 = wb.create_sheet(title=today)
+
+		##选择今日sheet
+		sheet_ranges = wb[today]
+
+		##循环把数据写入excel表格
+		for i in numList:
+			global FIRSTVAR
+			sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = i
+			##变量增加
+			FIRSTVAR = FIRSTVAR + 1
+		##保存表格
+		wb.save('58发房.xlsx')
+
+		global ROW
+		ROW = ROW + 1
+		FIRSTVAR = 0
+		# VALUES = 0
+		numList = []
+
 
 	##判断是否超过100，超过就下一区域(原方法，已改写)
 	if sum(numList) >= 100:
