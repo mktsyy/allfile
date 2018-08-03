@@ -809,10 +809,12 @@ def HZadmin(request):
 
 		##循环把数据写入excel表格
 		for i in numList:
-			global FIRSTVAR
-			sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = i
-			##变量增加
-			FIRSTVAR = FIRSTVAR + 1
+			##值中有不为零数值保存
+			if int(i) != 0:
+				global FIRSTVAR
+				sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = i
+				##变量增加
+				FIRSTVAR = FIRSTVAR + 1
 		##保存表格
 		wb.save('58发房.xlsx')
 
@@ -843,10 +845,12 @@ def HZadmin(request):
 
 		##循环把数据写入excel表格
 		for i in numList:
-			global FIRSTVAR
-			sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = i
-			##变量增加
-			FIRSTVAR = FIRSTVAR + 1
+			##值中有不为零数值保存
+			if int(i) != 0:
+				global FIRSTVAR
+				sheet_ranges[allColumn[FIRSTVAR]+str(excelNum[ROW])].value = i
+				##变量增加
+				FIRSTVAR = FIRSTVAR + 1
 		##保存表格
 		wb.save('58发房.xlsx')
 
