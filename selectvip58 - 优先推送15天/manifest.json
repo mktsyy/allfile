@@ -1,0 +1,18 @@
+{
+  "name": "58-优先推送15天",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "58-优先推送15天",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://vip.58ganji.com/*"],
+      "js": ["readscript.js"]
+    }
+  ]
+
+}
