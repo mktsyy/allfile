@@ -826,7 +826,10 @@ def HZadmin(request):
 
 
 	##判断是否超过100，超过就下一区域(原方法，已改写)
-	if sum(numList) >= 100:
+	# if sum(numList) >= 100:
+
+	##需求改为80
+	if sum(numList) >= 80:
 		# print (numList)
 
 		##装载表格
