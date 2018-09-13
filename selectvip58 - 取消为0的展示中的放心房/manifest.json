@@ -1,0 +1,18 @@
+{
+  "name": "58-取消为0的展示中的放心房",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "58-取消为0的展示中的放心房",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://vip.58ganji.com/zfgj/zsf*"],
+      "js": ["readscript.js"]
+    }
+  ]
+
+}

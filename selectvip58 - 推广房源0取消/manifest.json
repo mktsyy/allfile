@@ -1,0 +1,18 @@
+{
+  "name": "推广房源0取消",
+  "manifest_version": 2,
+  "version": "1.0",
+  "description": "推广房源0取消",
+  "browser_action": {
+    "default_icon": "2.png"
+
+  },
+ "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://vip.58ganji.com/zfgj/tg*"],
+      "js": ["readscript.js"]
+    }
+  ]
+
+}
