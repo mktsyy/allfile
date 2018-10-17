@@ -10,6 +10,10 @@ from django.http import JsonResponse
 from PIL import Image
 import os
 import othervarible
+
+##引入麦库数据库
+from fill.models import NotesTitle, NotesContent
+
 # Create your views here.
 # 
 import sys
@@ -17,6 +21,7 @@ defaultencoding = 'utf-8'
 if sys.getdefaultencoding() != defaultencoding:
     reload(sys)
     sys.setdefaultencoding(defaultencoding)
+
 
 
 
@@ -879,3 +884,13 @@ def HZadmin(request):
 	response["Access-Control-Max-Age"] = "1000"
 	response["Access-Control-Allow-Headers"] = "*"
 	return response
+
+def notes(request):
+	notes = {}
+	for title,content in zip(list(NotesTitle.objects.using("MKNote").all()),list(NotesContent.objects.using("MKSearch").all())[::-1]):
+	# for title in NotesTitle.objects.using("MKNote"):
+		notes[str(title.name)] = content.CONTENT
+		# print title.name
+		# print content.CONTENT
+
+	return render(request,"mk.html",{"notes":notes})

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>麦库记事本内容</title>
+</head>
+<body>
+	{% for key, value in notes.items %}
+    <!-- {{ key }}: {{ value }}<br> -->
+    <table border="1">
+<tr>
+  <h4><font color="red">{{ key }}</font></h4>
+  
+</tr>
+<tr>
+  <td>{{ value }}</td>
+  
+</tr>
+</table>
+{% endfor %}
+ 
+</body>

@@ -10,7 +10,7 @@
  "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["http://vip.58ganji.com/zfgj/jp*"],
+      "matches": ["https://vip.anjuke.com/zfgj/jp*"],
       "js": ["readscript.js"]
     }
   ]

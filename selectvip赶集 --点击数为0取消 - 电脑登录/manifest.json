@@ -1,8 +1,8 @@
 {
-  "name": "赶集-点击数为00取消",
+  "name": "赶集-点击数为0取消 - 电脑登录",
   "manifest_version": 2,
   "version": "1.0",
-  "description": "赶集-点击数为00取消",
+  "description": "赶集-点击数为0取消 - 电脑登录",
   "browser_action": {
     "default_icon": "2.png"
 
@@ -10,7 +10,7 @@
  "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["https://vip.anjuke.com/*"],
+      "matches": ["http://vip.58ganji.com/*"],
       "js": ["readscript.js"]
     }
   ]

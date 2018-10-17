@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^get10086phone/', views.get10086phone),
     url(r'^getVip58Send/', views.getVip58Send),
     url(r'^HZadmin/', views.HZadmin),
+    url(r'^notes/', views.notes),
 ]
