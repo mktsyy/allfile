@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for fillform project.
 
@@ -80,8 +81,28 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    'MKNote': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'MKNote.db'),
+    },
+    'MKSearch': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'MKSearch.db'),
+    },
 }
+
+##增加多数据库路由(这个是采用多数据库的方法之一，如果用using方法，只需要在DATABASES增加新数据库，setting里就设置完成了)
+# SUB_DIR = os.path.basename(os.path.dirname(__file__))
+# DATABASE_ROUTERS = [
+#     'myproject.database_router.DatabaseAppsRouter'
+# ]
+# DATABASE_APPS_MAPPING = {
+#         # example:
+#         #'app_label':'database_name',
+#         'sql': 'default',
+#         'MKNote': 'MKNote',
+# }
 
 
 # Password validation
