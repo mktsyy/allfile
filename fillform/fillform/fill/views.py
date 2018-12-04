@@ -650,14 +650,22 @@ document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")
 
 def ftp(request):
 	testselect = request.GET.get("test")
-	print testselect
+	# print testselect
 	from pyftpdlib.authorizers import DummyAuthorizer
 	from pyftpdlib.handlers import FTPHandler
 	from pyftpdlib.servers import FTPServer
+	import socket
+
+	#获取本机电脑名
+	myname = socket.getfqdn(socket.gethostname())
+	#获取本机ip
+	myaddr = socket.gethostbyname(myname)
+	print (myaddr)
 
 	authorizer = DummyAuthorizer()
-
-	authorizer.add_user('root', 'admin', '.', perm='elradfmw')
+	
+	##D盘设置为根目录
+	authorizer.add_user('root', 'admin', 'D:/', perm='elradfmw')
 
 	authorizer.add_anonymous('.')
 
@@ -667,12 +675,12 @@ def ftp(request):
 
 	if testselect == "start":
 
-		server = FTPServer(('10.137.7.124', 21), handler)
+		server = FTPServer((myaddr, 21), handler)
 		server.serve_forever()
-		# return HttpResponse(str(testselect))
+		return HttpResponse(str(testselect))
 
 	elif testselect == "stop":
-		server = FTPServer(('10.137.7.124', 21), handler)
+		server = FTPServer((myaddr, 21), handler)
 		server.close_all()
 		# print "stop"
 		print "now-stop"

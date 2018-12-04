@@ -2,11 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
+  <!-- 以下为混合支付宝微信付款代码 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  var setting = {
+      qqUrl: "https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=470168611&ac=A7F8A667DE01DE173F1C596EAC5177740F624EF15CACF4FD6B5D4097F71402EF&n=勿斗-PLA疯狂死神&f=wallet",
+      wechatUrl: "wxp://f2f0NSXdgZGG6SCmzwMtqSD0x23sjzOXhkSq",
+      aliUrl: "HTTPS://QR.ALIPAY.COM/FKX09945VP9T8SAGHTKY96",
+      qrcodeApi: "http://qr.liantu.com/api.php?text="    
+  }
+  </script>
+
+      <style>
+      * {
+          margin: 0; padding: 0;
+          font-family: Microsoft yahei;
+      }
+      body {
+          background-color: #fff;
+      }
+      .code-item {
+          width: 100%;
+          max-width: 400px;
+          margin: 0 auto;
+          padding-bottom: 1px;
+          display: none;
+          background-color: #5c92ef;
+      }
+      .code-title {
+          height: 100px;
+          background-color: #f2f2f2;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 60%;
+      }
+      .code-area {
+          text-align: center;
+      }
+      .code-area>img {
+          margin: 80px 0;
+          width: 60%;
+          min-width: 100px;
+      }
+      .code-footer {
+          height: 80px;
+          text-align: center;
+          background-color: #fff;
+          color: #666;
+          line-height: 40px;
+          font-size: 20px;
+          margin: -2px 2px 2px 2px;
+      }
+      
+      #code-all>.code-title {
+          background-image: url("img/money.png");
+  	}
+      
+      #code-qq {
+          background-color: #54b4ef;
+      }
+      #code-qq>.code-title {
+          background-image: url("img/money.png");
+  	}
+      
+      #code-wechat {
+          background-color: #54bc6e;
+      }
+      #code-wechat>.code-title { 
+          background-image: url("img/money.png");
+  	}
+  	
+  	.money {
+          height: 80px;
+          text-align: center;
+          line-height: 180px;
+          font-size: 18px;
+          margin: -2px 2px 2px 2px;
+      }
+      </style>    
+   <!-- 以上为混合支付宝微信付款代码 -->
   <title>ftp</title>
 </head>
 <body>
+
+<!-- 以下为原ftp代码 -->
 	<form action="/ftp/" method="get">
 <button   name = "test" type="submit" value="start">start</button>
 <button name = "test" type="submit" value="stop" >stop</button>
  </form>
+ <!-- 以上为原ftp代码 -->
+
+<!-- 以下为混合支付宝微信付款代码 -->
+ <div class="code-item" id="code-all">
+     <div class="code-title"><div class="money">本二维码支持以上APP向我付款</div></div>
+     <div class="code-area">
+         <img id="page-url" src="img/money.png">
+     </div>
+     <div class="code-footer">扫描或长按以上二维码向我付款<br />Copyright © 2012-2018 PLA疯狂死神</div>
+ </div>
+ <div class="code-item" id="code-qq">
+     <div class="code-title"><div class="money">本二维码支持以上APP向我付款</div></div>
+     <div class="code-area">
+         <img id="qq-url" src="img/money.png">
+     </div>
+     <div class="code-footer">扫描或长按以上二维码向我付款<br />Copyright © 2012-2018 PLA疯狂死神</div>
+ </div>
+ <div class="code-item" id="code-wechat">
+     <div class="code-title"><div class="money">本二维码支持以上APP向我付款</div></div>
+     <div class="code-area">
+         <img id="wechat-url" src="img/money.png">
+     </div>
+     <div class="code-footer">扫描或长按以上二维码向我付款<br />Copyright © 2012-2018 PLA疯狂死神</div>
+ </div>
+ 
+ <script>
+ if(navigator.userAgent.match(/Alipay/i)) {
+     window.location.href = setting.aliUrl; 
+ } else if(navigator.userAgent.match(/MicroMessenger\//i)) {
+     document.getElementById("wechat-url").src = setting.qrcodeApi + urlEncode(setting.wechatUrl);
+     document.getElementById("code-wechat").style.display = "block";
+ } else if(navigator.userAgent.match(/QQ\//i)) {
+     document.getElementById("qq-url").src = setting.qrcodeApi + urlEncode(setting.qqUrl);
+     document.getElementById("code-qq").style.display = "block";
+ } else {
+     document.getElementById("page-url").src = setting.qrcodeApi + urlEncode(window.location.href);
+     document.getElementById("code-all").style.display = "block";
+     console.log("ok")
+     // console.log(navigator.userAgent)
+ }
+ function urlEncode(String) {
+     return encodeURIComponent(String).replace(/'/g,"%27").replace(/"/g,"%22");	
+ }
+ </script>
+ <!-- 以上为混合支付宝微信付款代码 -->
+
 </body>
