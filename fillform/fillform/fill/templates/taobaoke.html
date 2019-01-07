@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>买买买</title>
+    </style>
+    <style type="text/css">
+    #img {
+        max-width: 284px;
+        max-height: 284px;
+    }
+
+    #main {
+        margin: 0 auto;
+        padding:10px 0 0 0  ;
+		text-align: center;
+
+    }
+
+    .main li {
+        display: block;
+        float: left;
+        margin: 0 18px 15px 0;
+    }
+    .clear{
+    	clear:both;
+    }
+
+    .box {
+        display: inline-block;
+        font-size: 20px;
+        margin: 10px;
+        background: linear-gradient(left, #f71605, #e0f513);
+        background: -webkit-linear-gradient(left, #f71605, #e0f513);
+        background: -o-linear-gradient(right, #f71605, #e0f513);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: scratchy 0.253s linear forwards infinite;
+        /* 其它浏览器兼容性前缀 */
+        -webkit-animation: scratchy 0.253s linear forwards infinite;
+        -moz-animation: scratchy 0.253s linear forwards infinite;
+        -ms-animation: scratchy 0.253s linear forwards infinite;
+        -o-animation: scratchy 0.253s linear forwards infinite;
+    }
+
+    @keyframes scratchy {
+        0% {
+            background-position: 0 0;
+        }
+
+        25% {
+            background-position: 0 0;
+        }
+
+        26% {
+            background-position: 20px -20px;
+        }
+
+        50% {
+            background-position: 20px -20px;
+        }
+
+        51% {
+            background-position: 40px -40px;
+        }
+
+        75% {
+            background-position: 40px -40px;
+        }
+
+        76% {
+            background-position: 60px -60px;
+        }
+
+        99% {
+            background-position: 60px -60px;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    /* 添加兼容性前缀 */
+    @-webkit-keyframes scratchy {
+        0% {
+            background-position: 0 0;
+        }
+
+        25% {
+            background-position: 0 0;
+        }
+
+        26% {
+            background-position: 20px -20px;
+        }
+
+        50% {
+            background-position: 20px -20px;
+        }
+
+        51% {
+            background-position: 40px -40px;
+        }
+
+        75% {
+            background-position: 40px -40px;
+        }
+
+        76% {
+            background-position: 60px -60px;
+        }
+
+        99% {
+            background-position: 60px -60px;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    @-moz-keyframes scratchy {
+        0% {
+            background-position: 0 0;
+        }
+
+        25% {
+            background-position: 0 0;
+        }
+
+        26% {
+            background-position: 20px -20px;
+        }
+
+        50% {
+            background-position: 20px -20px;
+        }
+
+        51% {
+            background-position: 40px -40px;
+        }
+
+        75% {
+            background-position: 40px -40px;
+        }
+
+        76% {
+            background-position: 60px -60px;
+        }
+
+        99% {
+            background-position: 60px -60px;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    @-ms-keyframes scratchy {
+        0% {
+            background-position: 0 0;
+        }
+
+        25% {
+            background-position: 0 0;
+        }
+
+        26% {
+            background-position: 20px -20px;
+        }
+
+        50% {
+            background-position: 20px -20px;
+        }
+
+        51% {
+            background-position: 40px -40px;
+        }
+
+        75% {
+            background-position: 40px -40px;
+        }
+
+        76% {
+            background-position: 60px -60px;
+        }
+
+        99% {
+            background-position: 60px -60px;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    @-o-keyframes scratchy {
+        0% {
+            background-position: 0 0;
+        }
+
+        25% {
+            background-position: 0 0;
+        }
+
+        26% {
+            background-position: 20px -20px;
+        }
+
+        50% {
+            background-position: 20px -20px;
+        }
+
+        51% {
+            background-position: 40px -40px;
+        }
+
+        75% {
+            background-position: 40px -40px;
+        }
+
+        76% {
+            background-position: 60px -60px;
+        }
+
+        99% {
+            background-position: 60px -60px;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .first {
+    	width: 918px;
+    	text-align: center;
+    	margin: 0 auto;
+    }
+    .second{
+    	margin: 0 auto;
+    	text-align: center;
+    }
+    .third form{
+    	display: block;
+    	float: left;
+    }
+    </style>
+</head>
+
+<body>
+	<div class = "first">
+	
+	<div class = "second">
+	
+	<div class="third">
+	<form action="taoBaoKeHtml" method="get">
+		搜索: <input type="text" name="search"> 
+		     
+		    <input type="submit" value="提交">
+		
+	</form>
+	
+	<!-- 页头导航 -->
+    <div class="pagination" align="center">
+        <span class="step-links">
+ 	        {% if TaobaokeDate.has_previous %}
+ 	            <a href="?page={{ TaobaokeDate.previous_page_number }}" class="ui-multipage-pre-active">上一页</a>
+ 	        {% endif %}
+
+ 	        <span class="current">
+ 	            Page {{ TaobaokeDate.number }} of {{ TaobaokeDate.paginator.num_pages }}.
+ 	        </span>
+        {% if TaobaokeDate.has_next %}
+        <a href="?page={{ TaobaokeDate.next_page_number }}" class="ui-multipage-next-active">下一页</a>
+        {% endif %}
+        </span>
+    </div>
+
+    </div>
+
+    <!-- 浮动清除，不然页面会乱 -->
+    <div class="clear"></div> 
+
+    <!-- 主内容 -->
+    <div id="main" align="center" class="main">
+        {% for date in TaobaokeDate %}
+        <!-- <font>{{date.c_name}}</font><br> -->
+        <li>
+            <a href={{date.taobaoke_url}} target="_blank">
+	<img id="img" src = "{{date.c_main_pic}}" >
+	</a>
+	<div>券后价<font color="red" size = "8">￥
+	<script type="text/javascript">
+		// console.log("{{date.coupon_price}}")
+		try{
+		var coupon = "{{date.coupon_price}}".split("减")[1].split("元")[0];
+		}catch (error) {
+			var coupon = "{{date.coupon_price}}".split("元")[0];
+		}
+		// console.log(coupon);
+		// document.write(coupon);
+		if(coupon){
+		document.write(Math.trunc({{date.c_price}}-coupon));
+		}else{
+			document.write("优惠券失效了！")
+		}
+		
+	</script>
+</font>
+	</div>
+            <div>
+                <a href="{{date.coupon_push_url}}" target="_blank"><span>点击领取<b class = "box"><font color = "red">{{date.coupon_price}}</font></b></span></a>
+            </div>
+        </li>
+        {% endfor %}
+    </div>
+
+    <!-- 浮动清除，不然页面会乱 -->
+    <div class="clear"></div> 
+
+    <!-- 页尾导航 -->
+    <div class="pagination" align="center">
+        <span class="step-links">
+ 	        {% if TaobaokeDate.has_previous %}
+ 	            <a href="?page={{ TaobaokeDate.previous_page_number }}" class="ui-multipage-pre-active">previous</a>
+ 	        {% endif %}
+
+ 	        <span class="current">
+ 	            Page {{ TaobaokeDate.number }} of {{ TaobaokeDate.paginator.num_pages }}.
+ 	        </span>
+        {% if TaobaokeDate.has_next %}
+        <a href="?page={{ TaobaokeDate.next_page_number }}" class="ui-multipage-next-active">next</a>
+        {% endif %}
+        </span>
+    </div>
+
+    <!-- 图片延迟加载 -->
+    <script>
+    function query(selector) {
+        return Array.from(document.querySelectorAll(selector));
+    }
+    var io = new IntersectionObserver(function(items) {
+        items.forEach(function(item) {
+            var target = item.target;
+            if (target.getAttribute('src') == 'images/loading.gif') {
+                target.src = target.getAttribute('data-src');
+            }
+        })
+    });
+    query('img').forEach(function(item) {
+        io.observe(item);
+    });
+    </script>
+    <script type="text/javascript">
+    	
+    	//翻页绑定左右按键
+
+    	document.onkeydown = function(event) {
+    	    var e = event || window.event || arguments.callee.caller.arguments[0];  
+    	    if (e && e.keyCode == 39) {
+    	        document.getElementsByClassName("ui-multipage-next-active")[0].click();
+    	    } else if (e && e.keyCode == 37) {
+    	        document.getElementsByClassName("ui-multipage-pre-active")[0].click();
+    	    }
+    	};
+    </script>
+	</div>
+	</div>
+</body>

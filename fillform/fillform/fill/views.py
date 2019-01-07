@@ -19,8 +19,8 @@ from fill.models import NotesTitle, NotesContent
 import sys
 defaultencoding = 'utf-8'
 if sys.getdefaultencoding() != defaultencoding:
-    reload(sys)
-    sys.setdefaultencoding(defaultencoding)
+	reload(sys)
+	sys.setdefaultencoding(defaultencoding)
 
 
 
@@ -40,79 +40,79 @@ def fill(request):
 	if a:
 		#写入数据库
 		Person.objects.create(tier=a,houseinfo=b,housecf=c,rentfl=d,housecf5=e)
-# 		returndata = Person.objects.all()[len(Person.objects.all())-1]
+#       returndata = Person.objects.all()[len(Person.objects.all())-1]
 
-# 		readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
-# 		readscriptpath.replace("\\","\\\\")
-# 		with open(readscriptpath,"w+") as f:
-# 			f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
-# 			f.write('document.getElementById("muban").click();\n')
-# 			f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
-# 			f.write('document.getElementsByName("renttype")[1].checked = true\n')
-# 			f.write('document.getElementById("price").value=%s\n' % returndata.rentfl.encode("utf-8"))
-# 			f.write('document.getElementById("buildarea").value=%s\n' % returndata.housecf.encode("utf-8").split('㎡')[0])
-# 			f.write('document.getElementsByName("room")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
-# 			f.write('document.getElementsByName("hall")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0])
-# 			f.write('document.getElementsByName("toilet")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0])
+#       readscriptpath = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))+"\chrome_fill_login\\readscript.js"
+#       readscriptpath.replace("\\","\\\\")
+#       with open(readscriptpath,"w+") as f:
+#           f.write('console.log("'+'%c'+'%s", "color: #e40c0c;font-size: xx-large;")\n' % (returndata.tier).encode("utf-8"))
+#           f.write('document.getElementById("muban").click();\n')
+#           f.write('document.getElementById("blockshowname").value="%s"\n' % (returndata.tier).encode("utf-8"))
+#           f.write('document.getElementsByName("renttype")[1].checked = true\n')
+#           f.write('document.getElementById("price").value=%s\n' % returndata.rentfl.encode("utf-8"))
+#           f.write('document.getElementById("buildarea").value=%s\n' % returndata.housecf.encode("utf-8").split('㎡')[0])
+#           f.write('document.getElementsByName("room")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[0])
+#           f.write('document.getElementsByName("hall")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[0])
+#           f.write('document.getElementsByName("toilet")[0].value=%s\n' % returndata.houseinfo.encode("utf-8").split("室")[1].split("厅")[1][0])
 
-# 			if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
-# 				f.write('document.getElementsByName("floor")[0].value=%s\n' % "3")
-# 			else:
-# 				f.write('document.getElementsByName("floor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[0])
+#           if int(returndata.housecf5.encode("utf-8").split("/")[0])==0:
+#               f.write('document.getElementsByName("floor")[0].value=%s\n' % "3")
+#           else:
+#               f.write('document.getElementsByName("floor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[0])
 
-# 			if int(returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])==0:
-# 				f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % "7")
-# 			else:
-# 				f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
+#           if int(returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])==0:
+#               f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % "7")
+#           else:
+#               f.write('document.getElementsByName("totalfloor")[0].value=%s\n' % returndata.housecf5.encode("utf-8").split("/")[1].split("层")[0])
 			
 
-# 			kkkk = '''document.getElementsByName("fitment")[0].value="精装"
+#           kkkk = '''document.getElementsByName("fitment")[0].value="精装"
 # document.getElementsByName("forward")[0].value="南北通透"
 # document.getElementsByName("payment")[0].value="月付"
 
 # document.getElementById("jsAllcheckbox").checked=true
 
 # for (var i = 10 - 1; i >= 0; i--) {
-# 	document.getElementsByName("equipment[]")[i].checked=true
+#   document.getElementsByName("equipment[]")[i].checked=true
 # };\n
 # '''
 
-# 			f.write(kkkk)
+#           f.write(kkkk)
 
-# 			#主次卧调换
-# 			if int(returndata.rentfl)%100 == 0:
-# 				f.write('document.getElementsByName("rentroom")[0].value="次卧"\n')
-# 			else:
-# 				f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
+#           #主次卧调换
+#           if int(returndata.rentfl)%100 == 0:
+#               f.write('document.getElementsByName("rentroom")[0].value="次卧"\n')
+#           else:
+#               f.write('document.getElementsByName("rentroom")[0].value="主卧"\n')
 
-# 			#标题调换
-# 			title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
-# 			if int(returndata.rentfl)%100 == 0:
-# 				f.write('document.getElementById("address").value="%s"\n' % title)
-# 			elif int(returndata.rentfl)%50 == 0:
-# 				title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
-# 				f.write('document.getElementById("address").value="%s"\n' % title)
-# 			else:
-# 				title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
-# 				f.write('document.getElementById("address").value="%s"\n' % title)
+#           #标题调换
+#           title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+#           if int(returndata.rentfl)%100 == 0:
+#               f.write('document.getElementById("address").value="%s"\n' % title)
+#           elif int(returndata.rentfl)%50 == 0:
+#               title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+#               f.write('document.getElementById("address").value="%s"\n' % title)
+#           else:
+#               title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+#               f.write('document.getElementById("address").value="%s"\n' % title)
 
 			
-# 			selectpic = '''
+#           selectpic = '''
 # setTimeout(function(){
 # for (var i = 1; i < 5; i++) {
-# 	document.getElementsByClassName("btn")[i].click()
-# 	}
+#   document.getElementsByClassName("btn")[i].click()
+#   }
 # },1000)
 # ''' 
-# 			f.write(selectpic)
-# 			#拿取小区地址自动填入
-# 			idjavascript = '''
+#           f.write(selectpic)
+#           #拿取小区地址自动填入
+#           idjavascript = '''
 # function myTimer() {
 #     var xmlhttp;
 #     xmlhttp = new XMLHttpRequest();
 #     xmlhttp.onreadystatechange = function() {
 #         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            
+			
 #             console.log(JSON.parse(xmlhttp.responseText))
 #             document.getElementById("district").value = JSON.parse(xmlhttp.responseText).district
 #             document.getElementById("street").value = JSON.parse(xmlhttp.responseText).streetname
@@ -122,7 +122,7 @@ def fill(request):
 #         } 
 #     }
 #     xmlhttp.open("GET", "http://nj.zsb.house365.com/ajax/find_block_detail/?id=%s" , true);
-    
+	
 #     xmlhttp.send();
 
 # };
@@ -130,45 +130,45 @@ def fill(request):
 
 # document.onkeydown=function(event){
 #       var e = event || window.event || arguments.callee.caller.arguments[0];
-                
+				
 #        // if(e && e.keyCode==13){ // enter 键
 #        if(e && e.keyCode==32){ // space 键
 #            document.getElementById("jsBtnSubmit_rent").click();
 #       }
 #   }; 
 
-# 			''' % (str(getid((returndata.tier).encode("utf-8"))))
+#           ''' % (str(getid((returndata.tier).encode("utf-8"))))
 
-# 			f.write(idjavascript)
+#           f.write(idjavascript)
 			
-# 			# content = '''
-# 			# 嗨住的优质房源
-# 			# 【便利的交通&成熟的配套】
-# 			# 超市，银行，医院，学校，便利店，菜市场，购物广场应有尽有,安全性高、位置安静、靠近花园、采光什么都非常好
-# 			# 【装修精致\配套成熟的整租房源】
+#           # content = '''
+#           # 嗨住的优质房源
+#           # 【便利的交通&成熟的配套】
+#           # 超市，银行，医院，学校，便利店，菜市场，购物广场应有尽有,安全性高、位置安静、靠近花园、采光什么都非常好
+#           # 【装修精致\配套成熟的整租房源】
 
-# 			# 厨房、卫生间、热水器、空调、WIFI,设备齐全，拎包就能入住,还有送车位的哦~
-# 			# 【有趣善良的合租室友】
-# 			# 那些直播里的萌妹纸、那些陆家嘴的金融GG、那些一身正气的程序员，可能就是你隔壁的室友~那些合租的小伙伴都是素质住户
-# 			# 【品质小区】
-# 			# 小区都处于繁华地段、房型正、佳、环境非常优美、都是一些次新小区
-# 			# 嗨住的优质服务
-# 			# * 无任何中介费
-# 			# 嗨住房源实地勘察，保证嗨住租房平台房源可租信息实时可靠
-# 			# * 房源广（7x24不断更新中）
-# 			# 上海房源48396、北京16411、杭州23495、南京12055
-# 			# * 直呼房东
-# 			# 租客可通过嗨住租房上公开的房东电话，直接呼叫联系房东，询问房屋信息、预约看 房、达成交易。
-# 			# * 免费预约
-# 			# 租客可直接在嗨住租房平台提交对某套房的看房预约请求，嗨住顾问将免费为租客协调与房东的见面时间，与房东直接见面，达成交易。
-# 			# * 租后服务
-# 			# 嗨住还为租客提供了房租分期、室友征选、搬家维修等系列租后服务。
-# 			# 更多房源欢迎致电4008180555(上海4008180555，杭州4008170019，南京4001606145）
-# 			# 或
-# 			# 至任意手机应用市场下载“嗨住租房”app
+#           # 厨房、卫生间、热水器、空调、WIFI,设备齐全，拎包就能入住,还有送车位的哦~
+#           # 【有趣善良的合租室友】
+#           # 那些直播里的萌妹纸、那些陆家嘴的金融GG、那些一身正气的程序员，可能就是你隔壁的室友~那些合租的小伙伴都是素质住户
+#           # 【品质小区】
+#           # 小区都处于繁华地段、房型正、佳、环境非常优美、都是一些次新小区
+#           # 嗨住的优质服务
+#           # * 无任何中介费
+#           # 嗨住房源实地勘察，保证嗨住租房平台房源可租信息实时可靠
+#           # * 房源广（7x24不断更新中）
+#           # 上海房源48396、北京16411、杭州23495、南京12055
+#           # * 直呼房东
+#           # 租客可通过嗨住租房上公开的房东电话，直接呼叫联系房东，询问房屋信息、预约看 房、达成交易。
+#           # * 免费预约
+#           # 租客可直接在嗨住租房平台提交对某套房的看房预约请求，嗨住顾问将免费为租客协调与房东的见面时间，与房东直接见面，达成交易。
+#           # * 租后服务
+#           # 嗨住还为租客提供了房租分期、室友征选、搬家维修等系列租后服务。
+#           # 更多房源欢迎致电4008180555(上海4008180555，杭州4008170019，南京4001606145）
+#           # 或
+#           # 至任意手机应用市场下载“嗨住租房”app
 
 
-# 			# '''
+#           # '''
 
 			
 
@@ -279,13 +279,13 @@ document.getElementsByName("equipment[]")[i].checked=true
 		#标题调换
 		# title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
 		# if int(returndata.rentfl)%100 == 0:
-		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		#   f.write('document.getElementById("address").value="%s"\n' % title)
 		# elif int(returndata.rentfl)%50 == 0:
-		# 	title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
-		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		#   title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+		#   f.write('document.getElementById("address").value="%s"\n' % title)
 		# else:
-		# 	title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
-		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		#   title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+		#   f.write('document.getElementById("address").value="%s"\n' % title)
 
 		#每次更换标题信息
 		if int(datanum) - othervarible.FIRSTNUM < 0:
@@ -294,15 +294,15 @@ document.getElementsByName("equipment[]")[i].checked=true
 			
 		print othervarible.FIRSTNUM
 		# if int(datanum)-othervarible.FIRSTNUM== 0:
-		# 	title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
-		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		#   title = (returndata.tier).encode("utf-8")+"环境优雅 闹中取静 交通便利 温馨舒适 阳光充足"
+		#   f.write('document.getElementById("address").value="%s"\n' % title)
 		# elif int(datanum)-othervarible.FIRSTNUM== 1:
-		# 	title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
-		# 	f.write('document.getElementById("address").value="%s"\n' % title)
+		#   title = (returndata.tier).encode("utf-8")+"采光好 空间大 小区绿化好 配套齐全 环境舒适"
+		#   f.write('document.getElementById("address").value="%s"\n' % title)
 		# elif int(datanum)-othervarible.FIRSTNUM== 2:
-		# 	title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
-		# 	f.write('document.getElementById("address").value="%s"\n' % title)
-		# 	othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
+		#   title = (returndata.tier).encode("utf-8")+"环境整洁清爽 采光格局好 冬暖夏凉 交通便利"
+		#   f.write('document.getElementById("address").value="%s"\n' % title)
+		#   othervarible.FIRSTNUM= othervarible.FIRSTNUM+3
 		if int(datanum)-othervarible.FIRSTNUM== 0:
 			title = (returndata.tier).encode("utf-8")+"精装现房，格局方正，男女不限，随时住"
 			f.write('document.getElementById("address").value="%s"\n' % title)
@@ -324,13 +324,13 @@ document.getElementsByClassName("btn")[i].click()
 ''' 
 		f.write(selectpic)
 		#拿取小区地址自动填入
-# 		idjavascript = '''
+#       idjavascript = '''
 # function myTimer() {
 # var xmlhttp;
 # xmlhttp = new XMLHttpRequest();
 # xmlhttp.onreadystatechange = function() {
 #     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        
+		
 #         console.log(JSON.parse(xmlhttp.responseText))
 #         document.getElementById("district").value = JSON.parse(xmlhttp.responseText).district
 #         document.getElementById("street").value = JSON.parse(xmlhttp.responseText).streetname
@@ -348,16 +348,16 @@ document.getElementsByClassName("btn")[i].click()
 
 # document.onkeydown=function(event){
 #   var e = event || window.event || arguments.callee.caller.arguments[0];
-            
+			
 #    // if(e && e.keyCode==13){ // enter 键
 #    if(e && e.keyCode==32){ // space 键
 #        document.getElementById("jsBtnSubmit_rent").click();
 #   }
 # }; 
 
-# 		''' % (str(getid((returndata.tier).encode("utf-8"))))
+#       ''' % (str(getid((returndata.tier).encode("utf-8"))))
 
-# 		f.write(idjavascript)
+#       f.write(idjavascript)
 		
 		# content = '''
 		# 嗨住的优质房源
@@ -416,7 +416,7 @@ def uploadpic(request):
 	# upload = request.COOKIES.get('upload')
 	# # print  upload
 	# if upload != "yy":
-	# 	return HttpResponse ("None")
+	#   return HttpResponse ("None")
 
 	##设置session
 	# request.session['upload'] = "syy"
@@ -424,7 +424,7 @@ def uploadpic(request):
 	##session判断登录
 	# upload = request.session.get('upload')
 	# if upload != "yy":
-	# 	return HttpResponse ("None")
+	#   return HttpResponse ("None")
 
 	##查询session的key,value
 	from django.contrib.sessions.models import Session
@@ -490,73 +490,73 @@ def writeAnjukeDate(request,datanum):
 			document.getElementsByName("community_unite")[0].value = '%s';
 
 			function showHint() {
-						    var xmlhttp;
+							var xmlhttp;
 
-						    if (window.XMLHttpRequest) {
-						        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-						        xmlhttp = new XMLHttpRequest();
-						    } else {
-						        // IE6, IE5 浏览器执行代码
-						        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-						    }
-						    xmlhttp.onreadystatechange = function() {
-						   			        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-						   			            console.log(JSON.parse(xmlhttp.responseText)["data"][0]["name"]);
-						   			            document.getElementsByName("communityAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][0]["name"];
+							if (window.XMLHttpRequest) {
+								// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+								xmlhttp = new XMLHttpRequest();
+							} else {
+								// IE6, IE5 浏览器执行代码
+								xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+							}
+							xmlhttp.onreadystatechange = function() {
+											if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+												console.log(JSON.parse(xmlhttp.responseText)["data"][0]["name"]);
+												document.getElementsByName("communityAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][0]["name"];
 
-						   			            	for (var i = document.getElementsByName("zoneAJK")[0].options.length - 1; i >= 0; i--) {
-						   			            			                if (document.getElementsByName("zoneAJK")[0].options[i].text===JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]){
-						   			            			                    document.getElementsByName("zoneAJK")[0].options[0].selected = false;
-						   			            			                    document.getElementsByName("zoneAJK")[0].options[i].selected = true;
-						   			            			                    console.log(document.getElementsByName("zoneAJK")[0].options[i]);
-						   			            			                    console.log(document.getElementsByName("zoneAJK")[0].value);
-						   			            			                    showHint1(document.getElementsByName("zoneAJK")[0].value,JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]);
-						   			            			                }
-						   			            			            }
+													for (var i = document.getElementsByName("zoneAJK")[0].options.length - 1; i >= 0; i--) {
+																			if (document.getElementsByName("zoneAJK")[0].options[i].text===JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]){
+																				document.getElementsByName("zoneAJK")[0].options[0].selected = false;
+																				document.getElementsByName("zoneAJK")[0].options[i].selected = true;
+																				console.log(document.getElementsByName("zoneAJK")[0].options[i]);
+																				console.log(document.getElementsByName("zoneAJK")[0].value);
+																				showHint1(document.getElementsByName("zoneAJK")[0].value,JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]);
+																			}
+																		}
 
-						   			           	// document.getElementsByClassName("ui-select-label")[0].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["area_string"];
-						   			           
-						   			            // document.getElementsByClassName("ui-select-label")[1].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"];
+												// document.getElementsByClassName("ui-select-label")[0].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["area_string"];
+											   
+												// document.getElementsByClassName("ui-select-label")[1].innerText = JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"];
 
-						   			            document.getElementsByName("addressAJK")[0].value =JSON.parse(xmlhttp.responseText)["data"][0]["address"];
+												document.getElementsByName("addressAJK")[0].value =JSON.parse(xmlhttp.responseText)["data"][0]["address"];
 
-						   			            // document.getElementById("ajk_community_address").innerText = "地址："+ JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]+" "
-						   			            // +JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]+" "+JSON.parse(xmlhttp.responseText)["data"][0]["address"]
+												// document.getElementById("ajk_community_address").innerText = "地址："+ JSON.parse(xmlhttp.responseText)["data"][0]["area_string"]+" "
+												// +JSON.parse(xmlhttp.responseText)["data"][0]["sub_area_string"]+" "+JSON.parse(xmlhttp.responseText)["data"][0]["address"]
 
-						   			        }
-						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=%s", true);
-						    xmlhttp.send();
-						    
+											}
+										}
+							xmlhttp.open("GET", "http://vip.anjuke.com/ajax/community/search/?q=%s", true);
+							xmlhttp.send();
+							
 						}
 
 						function showHint1(e,f) {
-						    var xmlhttp;
+							var xmlhttp;
 
-						    if (window.XMLHttpRequest) {
-						        // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-						        xmlhttp = new XMLHttpRequest();
-						    } else {
-						        // IE6, IE5 浏览器执行代码
-						        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-						    }
-						    xmlhttp.onreadystatechange = function() {
-						   			        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-						   			            for (var i = JSON.parse(xmlhttp.responseText)["data"].length - 1; i >= 0; i--) {
-						   			                if (JSON.parse(xmlhttp.responseText)["data"][i]["typeName"]==f){
-						   			                    // document.getElementsByName("blockAJK")[0].options[0].selected = false;
-						   			                    // document.getElementsByName("blockAJK")[0].options[i].selected = true;
-								   			            console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeName"])
-								   			            console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeId"])
-								   			            document.getElementsByName("blockAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][i]["typeId"]
-								   			            // console.log(document.getElementsByName("blockAJK")[0].options[i])
-						   			                }
-						   			            }
-						   			        }
-						   			    }
-						    xmlhttp.open("GET", "http://vip.anjuke.com/ajax/house/hz_house?act=getBlocks&districtId="+e, true);
-						    xmlhttp.send();
-						    
+							if (window.XMLHttpRequest) {
+								// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+								xmlhttp = new XMLHttpRequest();
+							} else {
+								// IE6, IE5 浏览器执行代码
+								xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+							}
+							xmlhttp.onreadystatechange = function() {
+											if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+												for (var i = JSON.parse(xmlhttp.responseText)["data"].length - 1; i >= 0; i--) {
+													if (JSON.parse(xmlhttp.responseText)["data"][i]["typeName"]==f){
+														// document.getElementsByName("blockAJK")[0].options[0].selected = false;
+														// document.getElementsByName("blockAJK")[0].options[i].selected = true;
+														console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeName"])
+														console.log(JSON.parse(xmlhttp.responseText)["data"][i]["typeId"])
+														document.getElementsByName("blockAJK")[0].value = JSON.parse(xmlhttp.responseText)["data"][i]["typeId"]
+														// console.log(document.getElementsByName("blockAJK")[0].options[i])
+													}
+												}
+											}
+										}
+							xmlhttp.open("GET", "http://vip.anjuke.com/ajax/house/hz_house?act=getBlocks&districtId="+e, true);
+							xmlhttp.send();
+							
 						}
 						//showHint();
 
@@ -597,7 +597,7 @@ def writeAnjukeDate(request,datanum):
 			title = (returndata.tier).encode("utf-8")+"精装现房，格局方正，男女不限，随时住"
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 1:
-			title = (returndata.tier).encode("utf-8")+"南北通透，性价比高，采光好"	
+			title = (returndata.tier).encode("utf-8")+"南北通透，性价比高，采光好"   
 			f.write('document.getElementsByName("title")[0].value = "%s"\n' % title)
 		elif int(datanum)-othervarible.FIRSTNUM== 2:
 			title = (returndata.tier).encode("utf-8")+"干净整洁，正规成熟，随时看房，无中介"
@@ -630,7 +630,7 @@ document.getElementsByClassName("ui-button ui-button-positive ui-button-medium")
 
 		#//刷新一次页面(未完成~~)
 		freshPageOnce = '''  var isFirst = setTimeout(function(){history.go(0)},2000); 
-   			 		 window.clearTimeout(isFirst);//去掉定时器 \n'''
+					 window.clearTimeout(isFirst);//去掉定时器 \n'''
 		f.write(freshPageOnce)
 
 		#//选择无中介费
@@ -732,12 +732,12 @@ def HZadmin(request):
 	# print HZalert
 
 	# if region[region1] !=FIRSTNAME:
-	# 	global FIRSTVAR
-	# 	FIRSTVAR = 0
-	# 	global FIRSTNAME
-	# 	FIRSTNAME = region[region1]
-	# 	global VALUES
-	# 	VALUES = 0
+	#   global FIRSTVAR
+	#   FIRSTVAR = 0
+	#   global FIRSTNAME
+	#   FIRSTNAME = region[region1]
+	#   global VALUES
+	#   VALUES = 0
 
 
 	# ##装载表格
@@ -749,7 +749,7 @@ def HZadmin(request):
 
 	# ##如果当日sheet未建立的话，就建立
 	# if today not in wb.sheetnames:##这里wb的语法有所改变
-	# 	ws2 = wb.create_sheet(title=today)
+	#   ws2 = wb.create_sheet(title=today)
 
 	# ##选择今日sheet
 	# sheet_ranges = wb[today]
@@ -797,11 +797,11 @@ def HZadmin(request):
 
 	##所有列的和，统计是否超过100(原方法)
 	# for grip in allColumn:
-	# 	# print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
-	# 	if isinstance(sheet_ranges[str(grip)+str(excelNum[ROW])].value,int):
-	# 		# print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
-	# 		global VALUES
-	# 		VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
+	#   # print type(sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+	#   if isinstance(sheet_ranges[str(grip)+str(excelNum[ROW])].value,int):
+	#       # print (sheet_ranges[str(grip)+str(excelNum[ROW])].value)
+	#       global VALUES
+	#       VALUES += sheet_ranges[str(grip)+str(excelNum[ROW])].value 
 	# print (VALUES)
 
 	##用region参数来控制保存
@@ -902,3 +902,83 @@ def notes(request):
 		# print content.CONTENT
 
 	return render(request,"mk.html",{"notes":notes})
+
+def write_TaoBaoKe_Date(request):##导入excel内容至数据库模块
+	import xlrd#导入xlrd模块
+	from fill.models import Taobaoke
+
+	##删除表格所有数据
+	# Taobaoke.objects.all().delete()
+
+	##装载表格
+	bk = xlrd.open_workbook('2019-01-07.xls')
+	one= bk.sheet_names()[0]#读取表格的第一个sheet
+	sh = bk.sheet_by_name(one)
+
+	##用批量法改写(速度大大提高，批量写入就是快啊！)
+	newList = []
+	kn = 0
+
+	while kn < 10000:
+		
+		newList.append(Taobaoke(
+			c_id  = sh.cell_value(kn,0),
+			c_name = sh.cell_value(kn,1),
+c_main_pic = sh.cell_value(kn,2),
+c_detail = sh.cell_value(kn,3),
+c_series = sh.cell_value(kn,4),
+taobaoke_url = sh.cell_value(kn,5),
+c_price = sh.cell_value(kn,6),
+c_sales = sh.cell_value(kn,7),
+c_percent = sh.cell_value(kn,8),
+commission = sh.cell_value(kn,9),
+sells_wangwang= sh.cell_value(kn,10),
+sells_id = sh.cell_value(kn,11),
+shopName= sh.cell_value(kn,12),
+platform_type= sh.cell_value(kn,13),
+coupon_id= sh.cell_value(kn,14),
+coupon_num = sh.cell_value(kn,15),
+coupon_surplus= sh.cell_value(kn,16),
+coupon_price = sh.cell_value(kn,17),
+coupon_starttime= sh.cell_value(kn,18),
+coupon_endtime = sh.cell_value(kn,19),
+coupon_url = sh.cell_value(kn,20),
+coupon_push_url = sh.cell_value(kn,21),
+
+					
+					))
+
+
+			
+		kn = kn + 1
+	Taobaoke.objects.bulk_create(newList)
+	return HttpResponse("done")
+
+def taoBaoKeHtml(request):
+	from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+	from fill.models import Taobaoke
+
+	TaobaokeDate = Taobaoke.objects.all()[1:]
+	paginator = Paginator(TaobaokeDate, 18) # 每页18条
+
+	page = request.GET.get('page',1)
+	search = request.GET.get("search","")
+	
+	if search != "":
+		print search
+		TaobaokeDate = Taobaoke.objects.filter(c_name__icontains = search )
+		paginator = Paginator(TaobaokeDate, 100) # 每页10条
+
+	try:
+		contacts = paginator.page(page) # contacts为Page对象！
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		contacts = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		contacts = paginator.page(paginator.num_pages)
+
+
+
+	return render(request,"taobaoke.html",{'TaobaokeDate':contacts})
+

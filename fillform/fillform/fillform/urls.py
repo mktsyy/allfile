@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^getVip58Send/', views.getVip58Send),
     url(r'^HZadmin/', views.HZadmin),
     url(r'^notes/', views.notes),
+    url(r'^write_TaoBaoKe_Date/', views.write_TaoBaoKe_Date),
+    url(r'^taoBaoKeHtml/', views.taoBaoKeHtml),
 ]

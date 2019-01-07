@@ -36,3 +36,28 @@ class NotesContent(models.Model):
     class Meta:
         app_label = "MKSearch" #数据库名
         db_table = 'NOTECONTENT' #表名
+
+class Taobaoke(models.Model):
+    c_id = models.CharField(max_length=60,null=True)
+    c_name = models.CharField(max_length=60,null=True)
+    c_main_pic = models.CharField(max_length=60,null=True)
+    c_detail =  models.CharField(max_length=60,null=True)
+    c_series =  models.CharField(max_length=60,null=True)
+    taobaoke_url =  models.CharField(max_length=60,null=True)
+    c_price =  models.CharField(max_length=60,null=True)
+    c_sales =  models.CharField(max_length=60,null=True)
+    c_percent = models.CharField(max_length=60,null=True)
+    commission =  models.CharField(max_length=60,null=True)
+    sells_wangwang = models.CharField(max_length=60,null=True)
+    sells_id = models.CharField(max_length=60,null=True)
+    shopName = models.CharField(max_length=60,null=True)
+    platform_type =  models.CharField(max_length=60,null=True)
+    coupon_id =  models.CharField(max_length=60,null=True)
+    coupon_num =  models.CharField(max_length=60,null=True)
+    coupon_surplus = models.CharField(max_length=60,null=True)
+    coupon_price = models.CharField(max_length=60,null=True)
+    coupon_starttime = models.CharField(max_length=60,null=True)
+    coupon_endtime = models.CharField(max_length=60,null=True)
+    coupon_url =  models.CharField(max_length=60,null=True)
+    coupon_push_url =  models.CharField(max_length=60,null=True) 
+
