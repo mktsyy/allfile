@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
     <title>买买买</title>
     </style>
     <style type="text/css">
@@ -237,7 +236,7 @@
     }
 
     .first {
-    	/*width: 918px;*/
+    	width: 918px;
     	text-align: center;
     	margin: 0 auto;
     }
@@ -245,7 +244,7 @@
     	margin: 0 auto;
     	text-align: center;
     }
-    .third  form{
+    .third form{
     	display: block;
     	float: left;
     }
@@ -256,19 +255,8 @@
 	<div class = "first">
 	
 	<div class = "second">
-      
-    </div>
 	
 	<div class="third">
-
-            <form action="taoBaoKeHtml" method="get" >
-                {% csrf_token %}
-            跳转: <input type="text" name="page" style= "width: 30px;"> 页
-                 
-                <input type="submit" value="跳转">
-            
-        </form>
-
 	<form action="taoBaoKeHtml" method="get">
 		搜索: <input type="text" name="search"> 
 		     
@@ -280,22 +268,21 @@
     <div class="pagination" align="center">
         <span class="step-links">
  	        {% if TaobaokeDate.has_previous %}
- 	            <a href="?page={{ TaobaokeDate.previous_page_number }}" class="ui-multipage-pre-active">上一页</a>
+ 	            <a href="?page={{ TaobaokeDate.previous_page_number }}&search={{search}}" class="ui-multipage-pre-active">上一页</a>
  	        {% endif %}
 
  	        <span class="current">
  	            Page {{ TaobaokeDate.number }} of {{ TaobaokeDate.paginator.num_pages }}.
  	        </span>
         {% if TaobaokeDate.has_next %}
-        <a href="?page={{ TaobaokeDate.next_page_number }}" class="ui-multipage-next-active">下一页</a>
+        <a href="?page={{ TaobaokeDate.next_page_number }}&search={{search}}" class="ui-multipage-next-active">下一页</a>
         {% endif %}
         </span>
     </div>
 
     </div>
 </div>
-
-
+</div>
     <!-- 浮动清除，不然页面会乱 -->
     <div class="clear"></div> 
 
@@ -303,7 +290,7 @@
     <div id="main" align="center" class="main">
         {% for date in TaobaokeDate %}
         <!-- <font>{{date.c_name}}</font><br> -->
-        <li style="height: 398px;">
+        <li>
             <a href={{date.taobaoke_url}} target="_blank">
 	<img id="img" src = "{{date.c_main_pic}}" >
 	</a>
@@ -340,14 +327,14 @@
     <div class="pagination" align="center">
         <span class="step-links">
  	        {% if TaobaokeDate.has_previous %}
- 	            <a href="?page={{ TaobaokeDate.previous_page_number }}" class="ui-multipage-pre-active">previous</a>
+ 	            <a href="?page={{ TaobaokeDate.previous_page_number }}&search={{search}}" class="ui-multipage-pre-active">previous</a>
  	        {% endif %}
 
  	        <span class="current">
  	            Page {{ TaobaokeDate.number }} of {{ TaobaokeDate.paginator.num_pages }}.
  	        </span>
         {% if TaobaokeDate.has_next %}
-        <a href="?page={{ TaobaokeDate.next_page_number }}" class="ui-multipage-next-active">next</a>
+        <a href="?page={{ TaobaokeDate.next_page_number }}&search={{search}}" class="ui-multipage-next-active">next</a>
         {% endif %}
         </span>
     </div>
@@ -369,6 +356,10 @@
         io.observe(item);
     });
     </script>
+
+
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+
     <script type="text/javascript">
     	
     	//翻页绑定左右按键
@@ -381,6 +372,11 @@
     	        document.getElementsByClassName("ui-multipage-pre-active")[0].click();
     	    }
     	};
+
+
+    	
+
+    	
     </script>
 	</div>
 	</div>

@@ -908,10 +908,10 @@ def write_TaoBaoKe_Date(request):##导入excel内容至数据库模块
 	from fill.models import Taobaoke
 
 	##删除表格所有数据
-	# Taobaoke.objects.all().delete()
+	Taobaoke.objects.all().delete()
 
 	##装载表格
-	bk = xlrd.open_workbook('2019-01-07.xls')
+	bk = xlrd.open_workbook('2019-03-13.xls')
 	one= bk.sheet_names()[0]#读取表格的第一个sheet
 	sh = bk.sheet_by_name(one)
 
@@ -954,20 +954,21 @@ coupon_push_url = sh.cell_value(kn,21),
 	Taobaoke.objects.bulk_create(newList)
 	return HttpResponse("done")
 
-def taoBaoKeHtml(request):
+def taoBaoKeHtml(request,search=""):
 	from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 	from fill.models import Taobaoke
+	from django.http import HttpResponseRedirect 
 
 	TaobaokeDate = Taobaoke.objects.all()[1:]
-	paginator = Paginator(TaobaokeDate, 18) # 每页18条
+	paginator = Paginator(TaobaokeDate, 100) # 每页18条
 
 	page = request.GET.get('page',1)
 	search = request.GET.get("search","")
 	
-	if search != "":
-		print search
-		TaobaokeDate = Taobaoke.objects.filter(c_name__icontains = search )
-		paginator = Paginator(TaobaokeDate, 100) # 每页10条
+	# if search != "":
+	#   # print search
+	#   TaobaokeDate = Taobaoke.objects.filter(c_name__icontains = search )
+	#   paginator = Paginator(TaobaokeDate, 100) # 每页10条
 
 	try:
 		contacts = paginator.page(page) # contacts为Page对象！
@@ -978,7 +979,107 @@ def taoBaoKeHtml(request):
 		# If page is out of range (e.g. 9999), deliver last page of results.
 		contacts = paginator.page(paginator.num_pages)
 
-
+	if search != "":##原来想破脑袋想不通怎么样加搜索，结果用了个跳转，重新弄个搜索结果页面解决了，真是。。。。。
+		return HttpResponseRedirect ("/taoBaoKeHtmlResult/?page=%s&search=%s" % (page,search))
+			
 
 	return render(request,"taobaoke.html",{'TaobaokeDate':contacts})
 
+def taoBaoKeHtmlResult(request):
+	from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+	from fill.models import Taobaoke
+	from django.http import HttpResponseRedirect 
+
+	page = request.GET.get('page')
+	search = request.GET.get("search")
+
+	TaobaokeDate = Taobaoke.objects.filter(c_name__icontains = search )[1:]
+	paginator = Paginator(TaobaokeDate, 100) # 每页10条
+
+	if search == "":
+		return HttpResponseRedirect("/taoBaoKeHtml/")
+	try:
+		contacts = paginator.page(page) # contacts为Page对象！
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page.
+		contacts = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range (e.g. 9999), deliver last page of results.
+		contacts = paginator.page(paginator.num_pages)
+	return render(request,"taobaokeresult.html",{'TaobaokeDate':contacts,"search":search})
+
+import re
+import os
+from wsgiref.util import FileWrapper
+from django.http import StreamingHttpResponse
+import mimetypes
+
+def file_iterator(file_name, chunk_size=8192, offset=0, length=None):
+	with open(file_name, "rb") as f:
+		f.seek(offset, os.SEEK_SET)
+		remaining = length
+		while True:
+			bytes_length = chunk_size if remaining is None else min(remaining, chunk_size)
+			data = f.read(bytes_length)
+			if not data:
+				break
+			if remaining:
+				remaining -= len(data)
+			yield data
+
+def streamvideo(request, path):
+	"""将视频文件以流媒体的方式响应"""
+	range_header = request.META.get('HTTP_RANGE', '').strip()
+	# print range_header
+	##正则有问题，待匹配(正则使用PythonVerbalExpressions已匹配完成，但safari还是不能播放视频)
+	range_re = re.compile(r'bytes\=([^\-]*)\-?([^\ ]*)', re.I)
+	# print range_re
+	range_match = range_re.match(range_header)
+	# print range_match.groups()
+	size = os.path.getsize(path)
+	# print size
+	content_type, encoding = mimetypes.guess_type(path)
+	content_type = content_type or 'application/octet-stream'
+	if range_match:
+		# print "come here"
+		first_byte, last_byte = range_match.groups()
+		first_byte = int(first_byte) if first_byte else 0
+		last_byte = first_byte + 1024 * 1024 * 1       # 8M 每片,响应体最大体积
+		if last_byte >= size:
+			last_byte = size - 1
+		length = last_byte - first_byte + 1
+		resp = StreamingHttpResponse(file_iterator(path, offset=first_byte, length=length), status=206, content_type=content_type)
+		resp['Content-Length'] = str(length)
+		resp['Content-Range'] = 'bytes %s-%s/%s' % (first_byte, last_byte, size)
+	else:
+		# 不是以视频流方式的获取时，以生成器方式返回整个文件，节省内存
+		resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
+		resp['Content-Length'] = str(size)
+	resp['Accept-Ranges'] = 'bytes'
+	return resp
+
+
+
+# from django.http import StreamingHttpResponse
+
+# def bigfiledownload(request):
+#     # do something...
+ 
+#     def file_iterator(file_name, chunk_size=512):
+#         with open(file_name) as f:
+#             while True:
+#                 c = f.read(chunk_size)
+#                 if c:
+#                     yield c
+#                 else:
+#                     break
+ 
+#     the_file_name = "3.mp4"
+#     response = StreamingHttpResponse(file_iterator(the_file_name))
+#     response['Content-Type'] = 'application/octet-stream'
+#     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
+ 
+#     return response
+	
+def dance(request):
+	return render(request,"dance.html")

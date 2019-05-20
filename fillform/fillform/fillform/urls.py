@@ -30,5 +30,8 @@ urlpatterns = [
     url(r'^HZadmin/', views.HZadmin),
     url(r'^notes/', views.notes),
     url(r'^write_TaoBaoKe_Date/', views.write_TaoBaoKe_Date),
-    url(r'^taoBaoKeHtml/', views.taoBaoKeHtml),
+    url(r'^taoBaoKeHtml/', views.taoBaoKeHtml,name = "taobaoke"),
+    url(r'^taoBaoKeHtmlResult/', views.taoBaoKeHtmlResult),
+    url(r'^dance/', views.dance),
+    url(r'^streamvideo/(\S+)', views.streamvideo),
 ]
